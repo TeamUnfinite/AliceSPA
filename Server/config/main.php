@@ -1,10 +1,16 @@
 <?php
 
-//see http://www.slimframework.com/docs/objects/application.html#slim-default-settings
+/*for slim framework
+ *http://www.slimframework.com/docs/objects/application.html#slim-default-settings
+*/
 $slimConfig = [
     'displayErrorDetails' => true
     ];
 
+/*for medoo
+ *see  Configuration section
+ *http://medoo.in/api/new
+*/
 $databaseConfig = [
     'database_type' => 'mysql',
     'database_name' => 'AliceSPA',

@@ -18,8 +18,7 @@ require $SERVER_PATH . '/middleware/load.php';
 
 
 //API
-$API_PATH = $SERVER_PATH . '/api';
-require $API_PATH . '/account.php';
+require $SERVER_PATH . '/api/load.php';
 //--API
 
 $app->run();
