@@ -14,7 +14,6 @@ class APIProtocol
         $res->withJson($apip->getResponse());
     }
     else{
-
     }
 		
     return $res;

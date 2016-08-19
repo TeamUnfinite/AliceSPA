@@ -12,10 +12,19 @@ class config
     }
 
     public static function setConfig($config){
+        if(isset($config['coreConfig']['timezone'])){
+            ini_set('date.timezone',$config['coreConfig']['timezone']);
+        }
+        if(!isset($config['coreConfig']['autoincrementBeginValue'])){
+            $config['coreConfig']['autoincrementBeginValue'] = 1;
+        }
         self::$config = $config;
     }
     public static function getConfig(){
         return self::$config;
+    }
+    public static function getCoreConfig(){
+        return self::$config['coreConfig'];
     }
 };
 

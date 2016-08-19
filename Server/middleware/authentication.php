@@ -1,13 +1,11 @@
 <?php
 namespace AliceSPA\middleware;
-/**
-* 
-*/
+use \AliceSPA\service\authentication as authentication;
+
 class authentication
 {
     function __invoke($req,$res,$next){
-        $auth = \AliceSPA\service\authentication::getInstance();
-        $auth->authenticateByWebToken(5,1);
+//     $auth = authentication::getInstance();
         return $next($req,$res);
     }
 }

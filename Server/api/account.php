@@ -1,8 +1,16 @@
 <?php
 
 //account login
-$app->get('/api/account/login',function($req,$res,$args){
+$app->post('/api/account/login',function($req,$res,$args){
+    $parsedBody = $req->getParsedBody();
+    $r = $this->auth->loginByUnionField($parsedBody,$parsedBody['password']);
+    $this->apip->setData($r);
+    return $res;
+});
 
-    $this->apip->setData($this->db->select('account','*'));
-    $this->apip->setEnabled();
+$app->post('/api/account/register',function($req,$res,$args){
+    $parsedBody = $req->getParsedBody();
+    $r = $this->auth->registerByUnionField($parsedBody,$parsedBody['password']);
+    $this->apip->setData($r);
+    return $res;
 });
