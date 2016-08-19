@@ -1,6 +1,11 @@
 <?php
 use \AliceSPA\exception\APIException as apie;
 use \AliceSPA\service\VerificationCodeManager as vcode;
+use \AliceSPA\service\authentication as authService;
+$app->get('/api/test/auth',function($req,$res,$args){
+   //$this->apip->setDisabled();
+    $this->apip->setData(authService::getInstance()->getUserInfo());
+});
 $app->get('/api/test/vcode',function($req,$res,$args){
     $this->apip->setDisabled();
     $vcode = vcode::getInstance();

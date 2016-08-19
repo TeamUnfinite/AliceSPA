@@ -1,21 +1,20 @@
 <?php
 namespace AliceSPA\middleware;
-/**
-* 
-*/
+use \AliceSPA\service\APIProtocol as apip;
+use \AliceSPA\exception\APIException;
 class APIProtocol
 {
     function __invoke($req,$res,$next){
-    		
-        $res = $next($req, $res);
-
-        $apip = \AliceSPA\service\APIProtocol::getInstance();
+        $apip = apip::getInstance();
+        try{ // Cache APIExceptoin instance, api protocol should deal with it and fill the response body.
+            $res = $next($req, $res);
+        }
+        catch(APIException $e){
+            $apip->pushError($e->getCode());
+        }
         if($apip->isEnabled()){
-            $res->withJson($apip->getResponse());
+            $res = $apip->flush($res);
         }
-        else{
-        }
-    		
         return $res;
     }
 }

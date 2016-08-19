@@ -1,7 +1,6 @@
 <?php
 namespace AliceSPA\service;
 use AliceSPA\service\database as db;
-use AliceSPA\helper\time as timeHelper;
 use AliceSPA\helper\utilities as utils;
 class VerificationCodeManager{
 
@@ -23,7 +22,7 @@ class VerificationCodeManager{
     public function clean($userId,$type,$validTime){
         $db = db::getInstance();
         $expiredTime = time() - $validTime;
-        $expiredTime = timeHelper::datetimePHP2Mysql($expiredTime);
+        $expiredTime = utils::datetimePHP2Mysql($expiredTime);
         $db->delete('verification_code',[
                 'AND' => [
                     'user_id' => $userId,
@@ -53,7 +52,7 @@ class VerificationCodeManager{
     public function check($userId,$codeId,$code,$type,$validTime){
         $db = db::getInstance();
         $expiredTime = time() - $validTime;
-        $expiredTime = timeHelper::datetimePHP2Mysql($expiredTime);
+        $expiredTime = utils::datetimePHP2Mysql($expiredTime);
         $r = $db->has('verification_code',[
                 'AND' => [
                     'user_id' => $userId,

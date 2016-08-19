@@ -1,6 +1,13 @@
 <?php
 namespace AliceSPA\helper;
 class utilities{
+    public static function getRequestHeader($req,$headerName){
+        $headerName = str_replace('-', '_', $headerName);
+        $schema = $req->getUri()->getScheme();
+        $headerName = $schema . '_' . $headerName;
+        $headerName = strtoupper($headerName);
+        return $req->getHeader($headerName);
+    }
     public static function arrayMap($arr1,$arr2){
 
         if(is_string($arr2)){
@@ -33,5 +40,13 @@ class utilities{
 
     public static function generateToken($arg = ''){
         return hash('sha256',$arg . time() . rand(),false);
+    }
+
+    public static function datetimeMysql2PHP($t){
+        return strtotime($t);
+    }
+
+    public static function datetimePHP2Mysql($t){
+        return date('Y-m-d H:i:s',$t);        
     }
 };

@@ -25,6 +25,16 @@ class authentication
         return self::$_instance;
     }
 
+    public function isLoggedIn(){
+        return $this->isLoggedIn;
+    }
+
+    public function getUserInfo(){
+        if(!$this->isLoggedIn){
+            return false;
+        }
+        return $this->userInfo;
+    }
 
     public function loginByUnionField($nameMap,$password){
         $db = db::getInstance();
@@ -42,7 +52,7 @@ class authentication
         }
 
         $token = utils::generateToken($user['id']);
-        $db->update('account',['web_token' => $token,'web_token_create_time'=>timeHelper::datetimePHP2Mysql(time())],['id'=>$user['id']]);
+        $db->update('account',['web_token' => $token,'web_token_create_time'=>utils::datetimePHP2Mysql(time())],['id'=>$user['id']]);
         $user = $this->authenticateByWebToken($user['id'],$token);
 
         return $user;
@@ -95,6 +105,7 @@ class authentication
 
     public function authenticateByWebToken($userId,$webToken){
         $db = db::getInstance();
+
         $user = $db->get('account',
             '*',
             ['AND' =>
@@ -102,6 +113,7 @@ class authentication
                 'web_token'=>$webToken
                 ]
             ]);
+
         if(!$user){
             throw new APIException(1);
             return false;
@@ -110,13 +122,13 @@ class authentication
         if(empty($web_token_create_time)){
             return false;
         }
-        if(time() - timeHelper::datetimeMysql2PHP($web_token_create_time) > 
+        if(time() - utils::datetimeMysql2PHP($web_token_create_time) > 
             configHelper::getCoreConfig()['webTokenValidTime']){
             return false;
         }
         unset($user['password']);
         unset($user['web_token_create_time']);
-        $isLoggedIn = true;
+        $this->isLoggedIn = true;
         $this->userInfo = $user;
         return $this->userInfo;
     }

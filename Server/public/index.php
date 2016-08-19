@@ -11,6 +11,7 @@ require $SERVER_PATH . '/config/main.php';
 
 $app = new \Slim\App(['settings' => $AliceSPAConfig['slimConfig']]);
 
+require $SERVER_PATH . '/exception/load.php';
 require $SERVER_PATH . '/service/load.php';
 require $SERVER_PATH . '/middleware/load.php';
 require $SERVER_PATH . '/helper/load.php';  
