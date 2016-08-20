@@ -1,5 +1,5 @@
 <?php
-namespace AliceSPA\DI;
+namespace AliceSPA\service;
 
 class APIProtocol
 {
@@ -64,5 +64,5 @@ class APIProtocol
 }
 
 $container['apip'] = function(){
-    return \AliceSPA\DI\APIProtocol::getInstance();
+    return \AliceSPA\service\APIProtocol::getInstance();
 };

@@ -1,4 +1,8 @@
 <?php
+//AliceSPA config
+$coreConfig = [
+    'webTokenValidTime' => 24*60*60
+];
 
 /*for slim framework
  *http://www.slimframework.com/docs/objects/application.html#slim-default-settings
@@ -11,7 +15,7 @@ $slimConfig = [
  *see  Configuration section
  *http://medoo.in/api/new
 */
-$databaseConfig = [
+$medooConfig = [
     'database_type' => 'mysql',
     'database_name' => 'AliceSPA',
     'server' => 'localhost',
@@ -22,3 +26,9 @@ $databaseConfig = [
     ];
 
 $userConfig = [];
+
+$AliceSPAConfig = [];
+$AliceSPAConfig['coreConfig'] = $coreConfig;
+$AliceSPAConfig['slimConfig'] = $slimConfig;
+$AliceSPAConfig['medooConfig'] = $medooConfig;
+$AliceSPAConfig['uesrConfig'] = $userConfig;

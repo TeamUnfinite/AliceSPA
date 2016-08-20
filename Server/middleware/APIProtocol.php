@@ -9,7 +9,7 @@ class APIProtocol
 		
     $res = $next($req, $res);
 
-    $apip = \AliceSPA\DI\APIProtocol::getInstance();
+    $apip = \AliceSPA\service\APIProtocol::getInstance();
     if($apip->isEnabled()){
         $res->withJson($apip->getResponse());
     }
