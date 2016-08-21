@@ -5,6 +5,7 @@ use \AliceSPA\helper\config as configHelper;
 use \AliceSPA\helper\database as dbHelper;
 use \AliceSPA\helper\utilities as utils;
 use \AliceSPA\service\database as db;
+use \AliceSPA\Exception\APIException as APIException;
 class authentication
 {
     private $isLoggedIn = false;
@@ -36,6 +37,7 @@ class authentication
         ];
         $user = $db->get('account',['id'],$where);
         if(!$user){
+            throw new APIException(1);
             return false;
         }
 
@@ -65,12 +67,14 @@ class authentication
         $nameMap = $this->filterUnionField($nameMap);
 
         if($this->isExistByUnionField($nameMap)){
+            throw new APIException(2);
             return false;
         }
         $data = $nameMap;
         $data['password'] = $password;
         $id = $db->insert('account',$data);
         if(intval($id) < configHelper::getCoreConfig()['autoincrementBeginValue']){
+            throw new APIException(100);
             return false;
         }
         return $id;
@@ -99,6 +103,7 @@ class authentication
                 ]
             ]);
         if(!$user){
+            throw new APIException(1);
             return false;
         }
         $web_token_create_time = $user['web_token_create_time'];

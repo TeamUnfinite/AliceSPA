@@ -1,9 +1,8 @@
 <?php
 use \AliceSPA\Exception\APIException as apie;
 $app->get('/api/test/empty',function($req,$res,$args){
-	throw new apie(1);
 	
-
+$this->apip->setDisabled();
     echo json_encode($this->auth->registerByUnionField(['user_name'=>'a3','telephone' => '123'],'a'));
 });
 
