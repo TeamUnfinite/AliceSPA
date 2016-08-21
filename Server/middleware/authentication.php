@@ -1,6 +1,6 @@
 <?php
 namespace AliceSPA\middleware;
-use \AliceSPA\service\authentication as authentication;
+use \AliceSPA\service\authentication as authService;
 
 class authentication
 {

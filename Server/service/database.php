@@ -13,6 +13,7 @@ class database{
         if(!(self::$_instance instanceof medoo)){
             self::$_instance = new \medoo(\AliceSPA\helper\config::getConfig()['medooConfig']);
         }
+        
         return self::$_instance;
     }
 };

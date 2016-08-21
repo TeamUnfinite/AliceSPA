@@ -65,13 +65,13 @@ class authentication
         $nameMap = $this->filterUnionField($nameMap);
 
         if($this->isExistByUnionField($nameMap)){
-            return 'a';
+            return false;
         }
         $data = $nameMap;
         $data['password'] = $password;
         $id = $db->insert('account',$data);
         if(intval($id) < configHelper::getCoreConfig()['autoincrementBeginValue']){
-            return 'b';
+            return false;
         }
         return $id;
     }

@@ -10,7 +10,7 @@ class APIProtocol
     ];
 
     var $isEnabled = true;
-
+    var $isFlushed = false;
     private static $_instance;
 
     private function __construct(){
@@ -25,7 +25,13 @@ class APIProtocol
         }
         return self::$_instance;
     }
-
+    function flush($res){
+        if($this->isFlushed){
+            return $res;
+        }
+        $this->isFlushed = true;
+        return $res->withJson($this->getResponse());
+    }
     function setSuccess(){
         $this->data['status'] = 'SUCCESS';
     }
@@ -60,6 +66,10 @@ class APIProtocol
 
     function isEnabled(){
         return $this->isEnabled;
+    }
+    function pushError($err){
+        $this->data['errors'][] = $err;
+        $this->setFailure();
     }
 }
 

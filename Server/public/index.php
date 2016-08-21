@@ -20,5 +20,4 @@ require $SERVER_PATH . '/api/load.php';
 //--API
 
 configHelper::setConfig($AliceSPAConfig);
-
 $app->run();

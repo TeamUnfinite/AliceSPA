@@ -15,6 +15,12 @@ class config
         if(isset($config['coreConfig']['timezone'])){
             ini_set('date.timezone',$config['coreConfig']['timezone']);
         }
+        if(isset($config['coreConfig']['displayPHPErrors'])){
+            ini_set('display_errors',$config['coreConfig']['displayPHPErrors']);
+        }
+        else{
+            ini_set('display_errors',false);
+        }
         if(!isset($config['coreConfig']['autoincrementBeginValue'])){
             $config['coreConfig']['autoincrementBeginValue'] = 1;
         }
