@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
+-- MySQL dump 10.13  Distrib 5.6.24, for osx10.8 (x86_64)
 --
--- Host: localhost    Database: AliceSPA
+-- Host: 127.0.0.1    Database: AliceSPA
 -- ------------------------------------------------------
--- Server version	5.6.28-0ubuntu0.15.10.1
+-- Server version	5.7.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,16 +34,25 @@ CREATE TABLE `account` (
   `web_token_create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping events for database 'AliceSPA'
+-- Table structure for table `verification_code`
 --
 
---
--- Dumping routines for database 'AliceSPA'
---
+DROP TABLE IF EXISTS `verification_code`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `verification_code` (
+  `user_id` bigint(11) NOT NULL,
+  `code_id` varchar(45) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `code` varchar(45) NOT NULL,
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`user_id`,`code_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -54,4 +63,4 @@ CREATE TABLE `account` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-20 20:23:15
+-- Dump completed on 2016-08-21 20:05:22
