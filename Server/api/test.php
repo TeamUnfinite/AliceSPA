@@ -1,5 +1,12 @@
 <?php
-use \AliceSPA\Exception\APIException as apie;
+use \AliceSPA\exception\APIException as apie;
+use \AliceSPA\service\VerificationCodeManager as vcode;
+$app->get('/api/test/vcode',function($req,$res,$args){
+    $this->apip->setDisabled();
+    $vcode = vcode::getInstance();
+    //$vcode->store(123,'123','email');
+    echo json_encode($vcode->clean(123,'email',1));
+});
 $app->get('/api/test/empty',function($req,$res,$args){
 	
 $this->apip->setDisabled();

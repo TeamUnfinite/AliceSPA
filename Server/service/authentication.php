@@ -5,7 +5,7 @@ use \AliceSPA\helper\config as configHelper;
 use \AliceSPA\helper\database as dbHelper;
 use \AliceSPA\helper\utilities as utils;
 use \AliceSPA\service\database as db;
-use \AliceSPA\Exception\APIException as APIException;
+use \AliceSPA\exception\APIException as APIException;
 class authentication
 {
     private $isLoggedIn = false;
