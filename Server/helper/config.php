@@ -24,6 +24,9 @@ class config
         if(!isset($config['coreConfig']['autoincrementBeginValue'])){
             $config['coreConfig']['autoincrementBeginValue'] = 1;
         }
+        if(!isset($config['coreConfig']['showAPIExceptoin'])){
+            $config['coreConfig']['showAPIExceptoin'] = false;
+        }
         self::$config = $config;
     }
     public static function getConfig(){

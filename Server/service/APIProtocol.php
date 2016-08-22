@@ -1,12 +1,14 @@
 <?php
 namespace AliceSPA\service;
+use \AliceSPA\helper\config as configHelper;
 
 class APIProtocol
 {
     var $data = [
         'status' => 'SUCCESS',
         'errors' => [],
-        'data' => null
+        'data' => null,
+        'APIException' => null
     ];
 
     var $isEnabled = true;
@@ -53,6 +55,9 @@ class APIProtocol
     }
 
     function getResponse(){
+        if(empty($this->data['APIException'])){
+            unset($this->data['APIException']);
+        }
         return $this->data;
     }
 
@@ -67,9 +72,22 @@ class APIProtocol
     function isEnabled(){
         return $this->isEnabled;
     }
+
     function pushError($err){
         $this->data['errors'][] = $err;
         $this->setFailure();
+    }
+
+    function setAPIException($e){
+        if(configHelper::getCoreConfig()['showAPIExceptoin']){
+            $edata = [];
+            $edata['code'] = $e->getCode();
+            $edata['message'] = $e->getMessage();
+            $edata['file'] = $e->getFile();
+            $edata['line'] = $e->getLine();
+            $edata['trace'] = $e->getTrace();
+            $this->data['APIException'] = $edata;
+        }
     }
 }
 

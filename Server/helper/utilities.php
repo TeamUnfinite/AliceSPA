@@ -1,5 +1,7 @@
 <?php
 namespace AliceSPA\helper;
+use \AliceSPA\exception\APIException;
+use \AliceSPA\service\APIProtocol as apip;
 class utilities{
     public static function getRequestHeader($req,$headerName){
         $headerName = str_replace('-', '_', $headerName);
@@ -47,6 +49,42 @@ class utilities{
     }
 
     public static function datetimePHP2Mysql($t){
-        return date('Y-m-d H:i:s',$t);        
+        return date('Y-m-d H:i:s',$t);
+    }
+
+
+    /*
+        dispose APIException
+        params:
+            $callable: function() will be executed, which may throw an APIException.
+            $map:   $map = [matchCode => ['change' => int, 'dispel' => int, 'dispelPushError' => boolean]]
+                matchCode: Match APIException's code.
+                change: Change the matched APIException's code with int and throw it on.
+                dispel: Return int if matched APIExceptoin and nothing will be throwed.
+                dispelPushError: If dispel is effective, push int to APIProtocol as an error.
+    */
+    public static function disposeAPIException($callable,$map){
+        $r = null;
+        try{
+            $r = $callable();
+        }
+        catch(APIException $e){
+            $oCode = $e->getCode();
+            if(!empty($map[$oCode])){
+                if(!empty($map[$oCode]['change'])){
+                    $e->setCode($map[$oCode]['change']);
+                    throw $e;
+                }
+                if(!empty($map[$oCode]['dispel'])){
+                    $r = $map[$oCode]['dispel'];
+                    if(!($map[$oCode]['dispelPushError'] === false)){
+                        apip::getInstance()->pushError($r);
+                    }
+                }
+
+            }
+
+        }
+        return $r;
     }
 };

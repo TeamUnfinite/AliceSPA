@@ -2,9 +2,12 @@
 use \AliceSPA\exception\APIException as apie;
 use \AliceSPA\service\VerificationCodeManager as vcode;
 use \AliceSPA\service\authentication as authService;
-$app->get('/api/test/auth',function($req,$res,$args){
-   //$this->apip->setDisabled();
-    $this->apip->setData(authService::getInstance()->getUserInfo());
+$app->post('/api/test/auth',function($req,$res,$args){
+    //$this->apip->setDisabled();
+    $body = $req->getParsedBody();
+
+    //$body = $this->auth->loginByUnionField($body,$body['password']);
+    //$this->apip->setData($body);
 });
 $app->get('/api/test/vcode',function($req,$res,$args){
     $this->apip->setDisabled();
