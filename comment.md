@@ -4,7 +4,7 @@
 ####HTTP header
 ```
 AliceSPA_UserID: user id
-AliceSPA_WebToekn: web token
+AliceSPA_WebToken: web token
 ```
 ##return format
 ```
