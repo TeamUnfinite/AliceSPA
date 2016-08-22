@@ -15,17 +15,18 @@ class Account{
     }
 
     public function register($req,$res,$args){
+        $auth = $this->c->get('auth');
+        $apip = $this->c->get('apip');
         $parsedBody = $req->getParsedBody();
-        
-        $r = utils::disposeAPIException(function()use($parsedBody){
-            return $this->c->get('auth')->registerByUnionField($parsedBody,$parsedBody['password']);
+        $r = utils::disposeAPIException(function()use($parsedBody,$auth){
+            return $auth->registerByUnionField($parsedBody,$parsedBody['password']);
         },[2=>['dispel' => 4]]);
         if(!($r === true)){
             return $res;
         }
 
-        $r = $this->c->get('auth')->loginByUnionField($parsedBody,$parsedBody['password']);
-        $this->c->get('apip')->setData($r);
+        $r = $auth->loginByUnionField($parsedBody,$parsedBody['password']);
+        $apip->setData($r);
         return $res;
     }
 
