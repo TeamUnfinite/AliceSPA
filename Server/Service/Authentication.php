@@ -70,7 +70,7 @@ class Authentication
         return false;
     }
 
-    public function registerByUnionField($nameMap,$password,$login = true){
+    public function registerByUnionField($nameMap,$password){
         $db = db::getInstance();
         
         $nameMap = $this->filterUnionField($nameMap);
@@ -86,9 +86,7 @@ class Authentication
             throw new APIException(2);
             return false;
         }
-        if($login === true){
-            return $this->loginByUnionField($nameMap,$password);
-        }
+
         return true;
     }
 

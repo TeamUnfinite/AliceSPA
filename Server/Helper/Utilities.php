@@ -66,16 +66,21 @@ class Utilities{
     public static function disposeAPIException($callable,$map){
         $r = null;
         try{
+
             $r = $callable();
         }
         catch(APIException $e){
+
             $oCode = $e->getCode();
             if(!empty($map[$oCode])){
+
                 if(!empty($map[$oCode]['change'])){
                     $e->setCode($map[$oCode]['change']);
+
                     throw $e;
                 }
                 if(!empty($map[$oCode]['dispel'])){
+
                     $r = $map[$oCode]['dispel'];
                     if(!($map[$oCode]['dispelPushError'] === false)){
                         apip::getInstance()->pushError($r);

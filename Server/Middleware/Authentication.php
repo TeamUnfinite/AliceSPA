@@ -15,7 +15,7 @@ class Authentication
             function()use($userId,$webToken){
                 $userId && $webToken && authService::getInstance()->authenticateByWebToken($userId,$webToken);
                 return null;
-            },[1=>['dispel'=>2]]);
+            },[1=>['dispel'=>3]]);
         return $next($req,$res);
     }
 }
