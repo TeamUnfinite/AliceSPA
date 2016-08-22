@@ -30,4 +30,11 @@ class Account{
         return $res;
     }
 
+    public function info($req,$res,$args){
+        $auth = $this->c->get('auth');
+        $apip = $this->c->get('apip');
+        $r = $auth->getUserInfo();
+        $apip->setData($r);
+        return $res;
+    }
 };
