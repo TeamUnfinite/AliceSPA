@@ -1,6 +1,6 @@
 <?php
-namespace AliceSPA\service;
-use \AliceSPA\helper\config as configHelper;
+namespace AliceSPA\Service;
+use \AliceSPA\Helper\Config as configHelper;
 
 class APIProtocol
 {
@@ -92,5 +92,5 @@ class APIProtocol
 }
 
 $container['apip'] = function(){
-    return \AliceSPA\service\APIProtocol::getInstance();
+    return \AliceSPA\Service\APIProtocol::getInstance();
 };

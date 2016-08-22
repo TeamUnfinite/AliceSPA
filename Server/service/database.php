@@ -1,6 +1,6 @@
 <?php
-namespace AliceSPA\service;
-class database{
+namespace AliceSPA\Service;
+class Database{
    private static $_instance;
 
     private function __construct(){
@@ -11,12 +11,12 @@ class database{
 
     public static function getInstance(){
         if(!(self::$_instance instanceof medoo)){
-            self::$_instance = new \medoo(\AliceSPA\helper\config::getConfig()['medooConfig']);
+            self::$_instance = new \medoo(\AliceSPA\Helper\Config::getConfig()['medooConfig']);
         }
         
         return self::$_instance;
     }
 };
 $container['db'] = function(){
-    return \AliceSPA\service\database::getInstance();
+    return \AliceSPA\Service\database::getInstance();
 };

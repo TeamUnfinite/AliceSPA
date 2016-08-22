@@ -1,12 +1,11 @@
 <?php
-namespace AliceSPA\service;
-use \AliceSPA\helper\time as timeHelper;
-use \AliceSPA\helper\config as configHelper;
-use \AliceSPA\helper\database as dbHelper;
-use \AliceSPA\helper\utilities as utils;
-use \AliceSPA\service\database as db;
-use \AliceSPA\exception\APIException as APIException;
-class authentication
+namespace AliceSPA\Service;
+use \AliceSPA\Helper\Config as configHelper;
+use \AliceSPA\Helper\Database as dbHelper;
+use \AliceSPA\Helper\Utilities as utils;
+use \AliceSPA\Service\Database as db;
+use \AliceSPA\Exception\APIException as APIException;
+class Authentication
 {
     private $isLoggedIn = false;
     private $userInfo = null;
@@ -71,7 +70,7 @@ class authentication
         return false;
     }
 
-    public function registerByUnionField($nameMap,$password){
+    public function registerByUnionField($nameMap,$password,$login = true){
         $db = db::getInstance();
         
         $nameMap = $this->filterUnionField($nameMap);
@@ -84,10 +83,13 @@ class authentication
         $data['password'] = $password;
         $id = $db->insert('account',$data);
         if(intval($id) < configHelper::getCoreConfig()['autoincrementBeginValue']){
-            throw new APIException(100);
+            throw new APIException(2);
             return false;
         }
-        return $id;
+        if($login === true){
+            return $this->loginByUnionField($nameMap,$password);
+        }
+        return true;
     }
 
     private function filterUnionField($nameMap){
@@ -135,5 +137,5 @@ class authentication
 }
 
 $container['auth'] = function(){
-    return \AliceSPA\service\authentication::getInstance();
+    return \AliceSPA\Service\Authentication::getInstance();
 };

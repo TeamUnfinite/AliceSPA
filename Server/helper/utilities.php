@@ -1,8 +1,8 @@
 <?php
-namespace AliceSPA\helper;
-use \AliceSPA\exception\APIException;
-use \AliceSPA\service\APIProtocol as apip;
-class utilities{
+namespace AliceSPA\Helper;
+use \AliceSPA\Exception\APIException;
+use \AliceSPA\Service\APIProtocol as apip;
+class Utilities{
     public static function getRequestHeader($req,$headerName){
         $headerName = str_replace('-', '_', $headerName);
         $schema = $req->getUri()->getScheme();

@@ -1,7 +1,7 @@
 <?php
-namespace AliceSPA\helper;
+namespace AliceSPA\Helper;
 
-class config
+class Config
 {
     private static $config = null;
 

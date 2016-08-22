@@ -1,10 +1,10 @@
 <?php
-namespace AliceSPA\middleware;
-use \AliceSPA\service\authentication as authService;
-use \AliceSPA\helper\utilities as utils;
-use \AliceSPA\exception\APIException;
-use \AliceSPA\service\APIProtocol as apip;
-class authentication
+namespace AliceSPA\Middleware;
+use \AliceSPA\Service\Authentication as authService;
+use \AliceSPA\Helper\Utilities as utils;
+use \AliceSPA\Exception\APIException;
+use \AliceSPA\Service\APIProtocol as apip;
+class Authentication
 {
     function __invoke($req,$res,$next){
         $userId = utils::getRequestHeader($req,'AliceSPA-UserID');
@@ -20,4 +20,4 @@ class authentication
     }
 }
 
-$app->add(\AliceSPA\middleware\authentication::class);
+$app->add(\AliceSPA\Middleware\authentication::class);

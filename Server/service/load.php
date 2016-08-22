@@ -1,6 +1,7 @@
 <?php
+$SERVICE_PATH = $SERVER_PATH . '/Service';
 $container = $app->getContainer();
-require $SERVER_PATH . '/service/APIProtocol.php';
-require $SERVER_PATH . '/service/database.php';
-require $SERVER_PATH . '/service/authentication.php';
-require $SERVER_PATH . '/service/verificationCodeManager.php';
+require $SERVICE_PATH . '/APIProtocol.php';
+require $SERVICE_PATH . '/Database.php';
+require $SERVICE_PATH . '/Authentication.php';
+require $SERVICE_PATH . '/VerificationCodeManager.php';

@@ -1,4 +1,5 @@
 <?php
-require $SERVER_PATH . '/helper/config.php';
-require $SERVER_PATH . '/helper/database.php';
-require $SERVER_PATH . '/helper/utilities.php';
+$HELPER_PATH = $SERVER_PATH . '/Helper';
+require $HELPER_PATH . '/Config.php';
+require $HELPER_PATH . '/Database.php';
+require $HELPER_PATH . '/Utilities.php';

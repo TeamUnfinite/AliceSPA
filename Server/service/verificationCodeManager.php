@@ -1,7 +1,7 @@
 <?php
-namespace AliceSPA\service;
-use AliceSPA\service\database as db;
-use AliceSPA\helper\utilities as utils;
+namespace AliceSPA\Service;
+use AliceSPA\Service\Database as db;
+use AliceSPA\Helper\Utilities as utils;
 class VerificationCodeManager{
 
     private static $_instance;

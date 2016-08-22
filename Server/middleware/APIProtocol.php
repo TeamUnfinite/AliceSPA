@@ -1,7 +1,7 @@
 <?php
-namespace AliceSPA\middleware;
-use \AliceSPA\service\APIProtocol as apip;
-use \AliceSPA\exception\APIException;
+namespace AliceSPA\Middleware;
+use \AliceSPA\Service\APIProtocol as apip;
+use \AliceSPA\Exception\APIException;
 
 class APIProtocol
 {
@@ -24,4 +24,4 @@ class APIProtocol
     }
 }
 
-$app->add(\AliceSPA\middleware\APIProtocol::class);
+$app->add(\AliceSPA\Middleware\APIProtocol::class);
