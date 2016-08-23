@@ -1,6 +1,7 @@
 <?php
-$app->get('/cap',function($req,$res,$argd){
-    \AliceSPA\Service\APIProtocol::getInstance()->setDisabled();
-    (new \Securimage())->show();
-});
 
+
+$app->get('/test',function($req,$res,$args){
+
+    return $res;
+});

@@ -23,6 +23,7 @@ class Authentication
                 return null;
             },[1=>['dispel'=>3,'dispelPushError'=>true]]);
         if($r === false){
+
             $apip->pushError(3);
             return $res;
         }

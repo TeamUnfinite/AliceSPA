@@ -27,6 +27,15 @@ class Config
         if(!isset($config['coreConfig']['showAPIExceptoin'])){
             $config['coreConfig']['showAPIExceptoin'] = false;
         }
+        if(!isset($config['coreConfig']['imageCaptchaValidTime'])){
+            $config['coreConfig']['imageCaptchaValidTime'] = 24*60*60;
+        }
+
+        $config['securimageConfig']['no_session'] = true;
+        $config['securimageConfig']['use_database'] = false;
+        $config['securimageConfig']['no_exit'] = true;
+        
+
         self::$config = $config;
     }
     public static function getConfig(){

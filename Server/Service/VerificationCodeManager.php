@@ -19,27 +19,24 @@ class VerificationCodeManager{
         return self::$_instance;
     }
 
-    public function clean($userId,$type,$validTime){
+    public function clean($validTime/*second*/){
         $db = db::getInstance();
         $expiredTime = time() - $validTime;
         $expiredTime = utils::datetimePHP2Mysql($expiredTime);
         $db->delete('verification_code',[
                 'AND' => [
-                    'user_id' => $userId,
-                    'type' => $type,
                     'create_time[<]' => $expiredTime
                 ]
             ]);
         return true;
     }
 
-    public function store($userId,$code,$type){
-        $codeId = strval($userId) . time() . rand(0,100000);
+    public function store($code,$type){
+        $codeId = rand(100000,999999) . uniqid();
         $db = db::getInstance();
         //$codeId = 1;
         $r = $db->insert('verification_code',[
-                'user_id' => $userId,
-                'code_id' => $codeId,
+                'id' => $codeId,
                 'code' => $code,
                 'type' => $type
             ]);
@@ -49,13 +46,12 @@ class VerificationCodeManager{
         return $codeId;
     }
 
-    public function check($userId,$codeId,$code,$type,$validTime){
+    public function check($codeId,$code,$type,$validTime){
         $db = db::getInstance();
         $expiredTime = time() - $validTime;
         $expiredTime = utils::datetimePHP2Mysql($expiredTime);
         $r = $db->has('verification_code',[
                 'AND' => [
-                    'user_id' => $userId,
                     'code_id' => $codeId,
                     'code' => $code,
                     'type' => $type,
