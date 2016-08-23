@@ -1,6 +1,7 @@
 {
     "require": {
         "slim/slim": "^3.0",
-        "catfan/Medoo": "^1.1"
+        "catfan/Medoo": "^1.1",
+        "dapphp/securimage": "^3.6"
     }
 }

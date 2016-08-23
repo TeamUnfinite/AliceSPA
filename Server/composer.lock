@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fbf12a1500e6bde46e2597dab83bf28c",
-    "content-hash": "c60d737d4bff107cfdf4c237ec061b7d",
+    "hash": "ff7ab2d3c35b9a10c2f1cab31f292397",
+    "content-hash": "a65e335aa457b257516311f9797ec050",
     "packages": [
         {
             "name": "catfan/medoo",
@@ -88,6 +88,53 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "time": "2014-12-30 15:22:37"
+        },
+        {
+            "name": "dapphp/securimage",
+            "version": "3.6.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dapphp/securimage.git",
+                "reference": "2ed50264ae5541fec8d8c79e4c9b6235a7cfd506"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/dapphp/securimage/2ed50264ae5541fec8d8c79e4c9b6235a7cfd506.zip",
+                "reference": "2ed50264ae5541fec8d8c79e4c9b6235a7cfd506",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=5.2.0"
+            },
+            "suggest": {
+                "ext-pdo": "For database storage support",
+                "ext-pdo_mysql": "For MySQL database support",
+                "ext-pdo_sqlite": "For SQLite3 database support"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "securimage.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Drew Phillips",
+                    "email": "drew@drew-phillips.com"
+                }
+            ],
+            "description": "PHP CAPTCHA Library",
+            "homepage": "https://www.phpcaptcha.org",
+            "keywords": [
+                "captcha",
+                "security"
+            ],
+            "time": "2016-03-04 21:08:00"
         },
         {
             "name": "nikic/fast-route",
