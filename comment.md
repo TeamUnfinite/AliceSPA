@@ -3,8 +3,9 @@
 ###authentication
 ####HTTP header
 ```
-AliceSPA_UserID: user id
-AliceSPA_WebToken: web token
+AliceSPA-UserID: user id
+AliceSPA-WebToken: web token
+AliceSPA-SessionID: session id
 ```
 ##return format
 ```
@@ -12,6 +13,7 @@ AliceSPA_WebToken: web token
     'status': 'SUCCESS' or 'FAILURE',
     'errors': [errorCode],
     'data': data,
-    'APIException': APIException info (OPTION)
+    'APIException': APIException info,
+    'sessionID': session id
 }
 ```

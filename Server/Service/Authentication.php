@@ -29,7 +29,7 @@ class Authentication
     }
 
     public function getUserInfo(){
-        if(!$this->isLoggedIn){
+        if(!$this->isLoggedIn()){
             return false;
         }
         return $this->userInfo;
@@ -145,7 +145,7 @@ class Authentication
             $roles = $db->select('role','role_names',['user_id'=>$this->userInfo['id']]);
             if(!empty($roles)){
                 $roles = $roles[0];
-                $roles = json_decode($roles);
+                $roles = json_decode($roles,true);
                 if(!in_array('visitor', $roles))
                 {
                     $roles[] = 'visitor';

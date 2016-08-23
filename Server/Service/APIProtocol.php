@@ -8,7 +8,8 @@ class APIProtocol
         'status' => 'SUCCESS',
         'errors' => [],
         'data' => null,
-        'APIException' => null
+        'APIException' => null,
+        'sessionID' => null
     ];
 
     var $isEnabled = true;
@@ -55,9 +56,6 @@ class APIProtocol
     }
 
     function getResponse(){
-        if(empty($this->data['APIException'])){
-            unset($this->data['APIException']);
-        }
         return $this->data;
     }
 
@@ -72,7 +70,9 @@ class APIProtocol
     function isEnabled(){
         return $this->isEnabled;
     }
-
+    function setSessionId($id){
+        $this->data['sessionID'] = $id;
+    }
     function pushError($err){
         $this->data['errors'][] = $err;
         $this->setFailure();

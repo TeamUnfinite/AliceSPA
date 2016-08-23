@@ -6,3 +6,4 @@ require $SERVICE_PATH . '/Database.php';
 require $SERVICE_PATH . '/Authentication.php';
 require $SERVICE_PATH . '/VerificationCodeManager.php';
 require $SERVICE_PATH . '/ImageCaptcha.php';
+require $SERVICE_PATH . '/Session.php';

@@ -44,6 +44,10 @@ class Utilities{
         return hash('sha256',$arg . time() . rand(),false);
     }
 
+    public static function generateUniqueId(){
+        return rand(100000,999999) . uniqid();
+    }
+
     public static function datetimeMysql2PHP($t){
         return strtotime($t);
     }
