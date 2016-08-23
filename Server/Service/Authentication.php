@@ -132,6 +132,52 @@ class Authentication
         $this->userInfo = $user;
         return $this->userInfo;
     }
+
+    public function checkRoles($routeRoles){
+
+        if(empty($routeRoles)){//Every one can access.
+            return true;
+        }
+
+        $roles = null;
+        if($this->isLoggedIn()){
+            $db = db::getInstance();
+            $roles = $db->select('role','role_names',['user_id'=>$this->userInfo['id']]);
+            if(!empty($roles)){
+                $roles = $roles[0];
+                $roles = json_decode($roles);
+                if(!in_array('visitor', $roles))
+                {
+                    $roles[] = 'visitor';
+                }
+                if(!in_array('user', $roles)){
+                    $roles[] = 'user';
+                }
+            }
+            else{
+                $roles = ['visitor','user'];
+            }
+        }
+        else{
+            $roles = ['visitor'];
+        }
+
+        if(in_array('admin', $roles)){//Admin can access every where.
+            return true;
+        }
+
+        $r = count(array_intersect($routeRoles, $roles)) >= 1;//If user has any one of roles required;
+
+        return $r;
+    }
+
+    public static function makeRouteAuthentication($route,$roles = null){
+        $r = $route->add(\AliceSPA\Middleware\authentication::class);
+        if(!empty($roles)){
+            $r->setArgument('AliceSPA_Roles',$roles);
+        }
+        return $r;
+    }
 }
 
 $container['auth'] = function(){

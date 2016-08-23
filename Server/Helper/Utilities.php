@@ -92,7 +92,5 @@ class Utilities{
         }
         return $r;
     }
-    public function makeRouteAuthentication($route){
-        return $route->add(\AliceSPA\Middleware\authentication::class);
-    }
+
 };

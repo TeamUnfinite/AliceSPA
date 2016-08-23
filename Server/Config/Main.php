@@ -1,5 +1,4 @@
 <?php
-
 //AliceSPA config
 $coreConfig = [
     'webTokenValidTime' => 24*60*60*1000000000,   //infinite for test
@@ -14,7 +13,8 @@ $coreConfig = [
  *http://www.slimframework.com/docs/objects/application.html#slim-default-settings
 */
 $slimConfig = [
-    'displayErrorDetails' => true
+    'displayErrorDetails' => true,
+    'addContentLengthHeader' => false // false for debugging, otherwise slim framework will throw an exception while var_dump() to outbuffer
     ];
 
 /*for medoo

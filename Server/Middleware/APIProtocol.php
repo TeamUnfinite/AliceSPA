@@ -7,7 +7,6 @@ class APIProtocol
 {
     function __invoke($req,$res,$next){
         $apip = apip::getInstance();
-
         try{ // Cache APIExceptoin instance, api protocol should deal with it and fill the response body.
             $res = $next($req, $res);
         }

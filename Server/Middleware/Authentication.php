@@ -7,6 +7,7 @@ use \AliceSPA\Service\APIProtocol as apip;
 class Authentication
 {
     function __invoke($req,$res,$next){
+    
         $apip = apip::getInstance();
         $userId = utils::getRequestHeader($req,'AliceSPA-UserID');
         $webToken = utils::getRequestHeader($req,'AliceSPA-WebToken');
@@ -23,6 +24,13 @@ class Authentication
             },[1=>['dispel'=>3,'dispelPushError'=>true]]);
         if($r === false){
             $apip->pushError(3);
+            return $res;
+        }
+
+        $roles = $req->getAttribute('route')->getArgument('AliceSPA_Roles');
+        $r = authService::getInstance()->checkRoles($roles);
+        if($r === false){
+            $apip->pushError(5);
             return $res;
         }
         return $next($req,$res);
