@@ -6,3 +6,7 @@ PHP 5.6
 GD2
 FreeType
 PDO
+
+```
+mv Server/Config/Main.php.example Server/Config/Main.php
+```
