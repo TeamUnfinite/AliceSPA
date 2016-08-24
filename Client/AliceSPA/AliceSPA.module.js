@@ -1,6 +1,7 @@
 define([],function () {
     var module = angular.module('AliceSPA',[]);
-    module.run([function(){
+    module.run(['ASPAError',function(ASPAError){
+        ASPAError.load();
     }]);
     return module;
 });

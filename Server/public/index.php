@@ -21,6 +21,7 @@ require $SERVER_PATH . '/API/load.php';
 //--API
 
 configHelper::setConfig($AliceSPAConfig);
+configHelper::setErrors($AliceSPAErrors);
 
 if(!empty(configHelper::getCoreConfig()['CORSOrigin'])){
     $app->options('/{routes:.+}', function ($request, $response, $args) {

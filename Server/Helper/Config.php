@@ -4,7 +4,7 @@ namespace AliceSPA\Helper;
 class Config
 {
     private static $config = null;
-
+    private static $errors = null;
     private function __construct(){
     }
 
@@ -51,6 +51,12 @@ class Config
     }
     public static function getCoreConfig(){
         return self::$config['coreConfig'];
+    }
+    public static function setErrors($errors){
+        self::$errors = $errors;
+    }
+    public static function getErrors(){
+        return self::$errors;
     }
 };
 
