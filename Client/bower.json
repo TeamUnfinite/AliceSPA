@@ -1,0 +1,23 @@
+{
+  "name": "AliceSPA_Client",
+  "homepage": "https://github.com/ruojianll/AliceSPA",
+  "authors": [
+    "ruojianll@gmail.com <ruojianll@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "^2.2.0",
+    "angular": "^1.5.8",
+    "underscore": "^1.8.3",
+    "domReady": "^2.0.1"
+  }
+}

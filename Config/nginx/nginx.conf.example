@@ -14,7 +14,7 @@ http {
     keepalive_timeout  65;
 
     gzip  on;
-
+    expires -1s;
     server {
         listen       8080;
         server_name  localhost;
@@ -33,4 +33,10 @@ http {
             include fastcgi_params;
         }
    }
+    server {
+        listen 8081;
+        server_name localhost;
+        root /home/rj/Desktop/AliceSPA/Client;
+        index index.html;
+    }
 }
