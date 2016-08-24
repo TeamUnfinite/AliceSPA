@@ -38,7 +38,7 @@ class Session{
 
     public function get($key){//BUG false may be a value in session, FIX IT
         if($this->session === null){
-            return false;
+            return null;
         }
         return $this->session[$key];
     }

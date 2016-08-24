@@ -1,7 +1,5 @@
 <?php
-
-$app->get('/test',function($req,$res,$args){
-    $r = $this->session->get('a');
-    \AliceSPA\Service\APIProtocol::getInstance()->setData($r);
+use \AliceSPA\Helper\Utilities as utils;
+utils::secureRoute($app->post('/test',function($req,$res,$args){
     return $res;
-});
+}),['admini'],'image');

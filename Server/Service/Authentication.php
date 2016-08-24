@@ -170,14 +170,6 @@ class Authentication
 
         return $r;
     }
-
-    public static function makeRouteAuthentication($route,$roles = null){
-        $r = $route->add(\AliceSPA\Middleware\authentication::class);
-        if(!empty($roles)){
-            $r->setArgument('AliceSPA_Roles',$roles);
-        }
-        return $r;
-    }
 }
 
 $container['auth'] = function(){

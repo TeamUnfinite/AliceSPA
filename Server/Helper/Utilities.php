@@ -66,12 +66,17 @@ class Utilities{
                 change: Change the matched APIException's code with int and throw it on.
                 dispel: Return int if matched APIExceptoin and nothing will be throwed.
                 dispelPushError: If dispel is effective, push int to APIProtocol as an error.
+            $successCallback($ret): Callback when callable execute without Exception.
+                $ret: Callable returned value.
+            $dispelCallback($dispeledCode): Callback when Exceptoin dispeled.
+                $code: Dispeled code.
     */
-    public static function disposeAPIException($callable,$map){
+    public static function disposeAPIException($callable,$map,$successCallback = null,$dispelCallback = null){
         $r = null;
         try{
 
             $r = $callable();
+            $successCallback && $successCallback($r);
         }
         catch(APIException $e){
 
@@ -84,17 +89,46 @@ class Utilities{
                     throw $e;
                 }
                 if(!empty($map[$oCode]['dispel'])){
-
                     $r = $map[$oCode]['dispel'];
+
                     if(!($map[$oCode]['dispelPushError'] === false)){
                         apip::getInstance()->pushError($r);
                     }
+
+                    $dispelCallback && $dispelCallback($r);
+                    return false;
                 }
 
             }
 
         }
+
         return $r;
+    }
+
+
+    //params:
+    //  $roles
+    //                  false : Not effective.
+    //                  true : User must has logged in
+    //                  array : User must has specified roles. e.g. ['admin']
+    //  $captchaType
+    //                  false : Not effective.
+    //                  string : Accessable with currect captcha of thie captcha type. e.g. 'image' , 'SMS'
+    public static function secureRoute($route,$roles = true,$captchaType = false){
+        if($roles !== false){
+            $route = $route->add(\AliceSPA\Middleware\Authentication::class);
+            if(is_array($roles) && count($roles) > 0){
+                $route->setArgument('AliceSPA_Roles',$roles);
+            }            
+        }
+
+        if(!empty($captchaType)){
+                $route = $route->add(\AliceSPA\Middleware\Captcha::class);
+                $route->setArgument('AliceSPA_CaptchaType',$captchaType);
+        }
+
+        return $route;
     }
 
 };

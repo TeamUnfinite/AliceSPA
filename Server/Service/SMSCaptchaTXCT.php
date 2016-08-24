@@ -16,7 +16,9 @@ class SMSCaptchaTXCT{
         return self::$_instance;
     }
 
-    public function send()
+    public function send(){
+        
+    }
 };
 
 $container['SMSCaptchaTXCT'] = function(){

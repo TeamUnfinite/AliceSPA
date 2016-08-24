@@ -3,6 +3,7 @@ namespace AliceSPA\Service;
 use AliceSPA\Service\Database as db;
 use AliceSPA\Helper\Utilities as utils;
 use AliceSPA\Service\Authentication as auth;
+use AliceSPA\Service\Session as session;
 class VerificationCodeManager{
 
     private static $_instance;
@@ -20,52 +21,47 @@ class VerificationCodeManager{
         return self::$_instance;
     }
 
-    public function clean($validTime/*second*/){
-        $db = db::getInstance();
-        $expiredTime = time() - $validTime;
-        $expiredTime = utils::datetimePHP2Mysql($expiredTime);
-        $db->delete('verification_code',[
-                'AND' => [
-                    'create_time[<]' => $expiredTime
-                ]
-            ]);
-        return true;
-    }
-
     public function store($code,$type){
         $codeId = utils::generateUniqueId();
-        $db = db::getInstance();
-        //$codeId = 1;
-        $where = [
-            'id' => $codeId,
-            'code' => $code,
-            'type' => $type
-        ];
-        $auth = auth::getInstance();
-        $userInfo = auth::getUserInfo();
-        if($userInfo !== false){
-            $where['user_id'] = $userInfo['id'];
+        $session = session::getInstance();
+        $createTime = utils::datetimePHP2Mysql(time());
+
+        $codes = $session->get('AliceSPA_VerificationCodes');
+        if(empty($codes)){
+            $codes = [];
         }
-        $r = $db->insert('verification_code',$where);
-        if($db->error()[1]!==null){
+        if(empty($codes[$type])){
+            $codes[$type] = [];
+        }
+        $codes[$type][$codeId] = ['Code' => $code, 'CreateTime' => $createTime];
+
+        if($session->set('AliceSPA_VerificationCodes', $codes) === false){
             return false;
         }
-        return $codeId;
+
+       return $codeId;
     }
 
-    public function check($codeId,$code,$type,$validTime){
-        $db = db::getInstance();
-        $expiredTime = time() - $validTime;
-        $expiredTime = utils::datetimePHP2Mysql($expiredTime);
-        $r = $db->has('verification_code',[
-                'AND' => [
-                    'code_id' => $codeId,
-                    'code' => $code,
-                    'type' => $type,
-                    'create_time[>]' => $expiredTime
-                ]
-            ]);
-        return $r;
+    public function check($codeId,$code,$type,$validTime = null){
+        $session = session::getInstance();
+        $codes = $session->get('AliceSPA_VerificationCodes');
+        if(empty($codes)){
+            return false;
+        }
+        if(empty($codes[$type])){
+            return false;
+        }
+        if(empty($codes[$type][$codeId])){
+            return false;
+        }
+        $c = $codes[$type][$codeId];
+        if(empty($c)){
+            return false;
+        }
+        if($c['Code'] === $code && ($validTime === null ||   utils::datetimeMysql2PHP($c['CreateTime']) > time() - $validTime)){
+            return true;
+        }
+        return false;
     }
 };
 

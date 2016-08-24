@@ -1,13 +1,22 @@
 #API protocol
 ##request
-###authentication
-####HTTP header
+###request header
 ```
-AliceSPA-UserID: user id
-AliceSPA-WebToken: web token
-AliceSPA-SessionID: session id
+AliceSPA-UserID: user id | OPETION
+AliceSPA-WebToken: web token | OPETION
+AliceSPA-SessionID: session id | OPETION
 ```
-##return format
+###request body
+```
+{
+    "YOUR":"DATA",
+    "AliceSPA_Captcha":{  verified by AliceSPA automatically.
+        "id": captcha ID,
+        "code": captcha code
+        }
+}
+```
+##response format
 ```
 {
     'status': 'SUCCESS' or 'FAILURE',

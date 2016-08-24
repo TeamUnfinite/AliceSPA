@@ -19,3 +19,16 @@ password
 user info
 ######DES
 Auto login after registered.
+
+#captcha
+####image
+######GET /api/captcha/image
+######REQ
+NONE
+######RES
+```
+{
+    "id": captcha id,
+    "data": captcha image data encoded by base 64
+}
+```

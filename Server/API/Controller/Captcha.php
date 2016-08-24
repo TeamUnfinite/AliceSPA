@@ -16,11 +16,14 @@ class Captcha{
         return $res;
     }
 
+    public function checkImage($req,$res,$args){
+        //$this->c->get('apip')->setDisabled();
+            $this->c->get('apip')->setData($this->c->get('VCManager')->check('76908157bd27f157e4f','skdgta','image'));  
+            return $res;
+    }
+
     public function sms($req,$res,$args){
         
     }
 
-    public function clean($req,$res,$args){
-        $this->c->get('VCManager')->clean(configHelper::getCoreConfig()['imageCaptchaValidTime']);
-    }
 };

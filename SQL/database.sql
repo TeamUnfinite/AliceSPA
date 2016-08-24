@@ -34,7 +34,7 @@ CREATE TABLE `account` (
   `web_token_create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,17 +52,16 @@ CREATE TABLE `role` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `verification_code`
+-- Table structure for table `session`
 --
 
-DROP TABLE IF EXISTS `verification_code`;
+DROP TABLE IF EXISTS `session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `verification_code` (
-  `id` varchar(45) NOT NULL,
-  `type` varchar(10) NOT NULL,
-  `code` varchar(45) NOT NULL,
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE `session` (
+  `id` varchar(30) NOT NULL,
+  `session` varchar(500) DEFAULT NULL,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -84,4 +83,4 @@ CREATE TABLE `verification_code` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-23 18:08:10
+-- Dump completed on 2016-08-24 15:16:19

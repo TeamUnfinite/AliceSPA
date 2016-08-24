@@ -19,15 +19,13 @@ class Authentication
         }
         $r = utils::disposeAPIException(
             function()use($userId,$webToken){
-                authService::getInstance()->authenticateByWebToken($userId,$webToken);
-                return null;
-            },[1=>['dispel'=>3,'dispelPushError'=>true]]);
+                return authService::getInstance()->authenticateByWebToken($userId,$webToken);
+            },
+            [1=>['dispel'=>3,'dispelPushError'=>false]]);
         if($r === false){
-
             $apip->pushError(3);
             return $res;
         }
-
         $roles = $req->getAttribute('route')->getArgument('AliceSPA_Roles');
         $r = authService::getInstance()->checkRoles($roles);
         if($r === false){

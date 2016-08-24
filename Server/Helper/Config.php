@@ -34,7 +34,7 @@ class Config
             $config['coreConfig']['SMSCaptchaValidTime'] = 24*60*60;
         }
         if(!isset($config['coreConfig']['SMSCaptchaSpan'])){
-            $config['coreConfig']['SMSCaptchaSpan'] = 24*60*60;
+            $config['coreConfig']['SMSCaptchaSpan'] = 60;
         }
 
 
