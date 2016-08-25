@@ -3,6 +3,7 @@ var AliceSPA_PATH = '/AliceSPA'
 require.config({
     baseUrl:'/',
     paths: {
+        'jshashes': BOWER_PATH + '/jshashes/hashes.min',
         'domReady': BOWER_PATH + '/domReady/domReady',
         'angular': BOWER_PATH + '/angular/angular.min',
         'underscore': BOWER_PATH + '/underscore/underscore-min',
@@ -11,7 +12,7 @@ require.config({
     },
     shim: {
         'AliceSPA':{
-            'deps': ['angular','underscore']
+            'deps': ['jshashes','angular','underscore']
         },
         'app': {
             'deps': ['AliceSPA']

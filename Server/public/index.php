@@ -32,7 +32,8 @@ if(!empty(configHelper::getCoreConfig()['CORSOrigin'])){
         $response = $next($req, $res);
         return $response
                 ->withHeader('Access-Control-Allow-Origin', configHelper::getCoreConfig()['CORSOrigin'])
-                ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+                ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization' . 
+                    ', AliceSPA-UserID, AliceSPA-WebToken, AliceSPA-SessionID')
                 ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     });
 }
