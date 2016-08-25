@@ -37,4 +37,8 @@ class Account{
         $apip->setData($r);
         return $res;
     }
+
+    public function logout($req,$res,$args){
+        $this->c->get('auth')->logout();
+    }
 };

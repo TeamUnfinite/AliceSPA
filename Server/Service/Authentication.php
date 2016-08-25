@@ -57,6 +57,13 @@ class Authentication
         return $user;
     }
 
+    public function logout($id){
+        $userInfo = $this->getUserInfo();
+        if($userInfo !== false){
+            $db->update('account',['web_token'=>null,'web_token_create_time'=>null],['id'=>$userInfo['id']]);
+        }
+    }
+
     public function isExistByUnionField($nameMap){
         $db = db::getInstance();
         $nameMap = $this->filterUnionField($nameMap);

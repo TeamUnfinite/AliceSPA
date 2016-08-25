@@ -26,7 +26,9 @@ define(['/AliceSPA/AliceSPA.module.js','jshashes'],function(module,Hashes){
             },
             getUserInfo: function(){ return ASPAData.get('userInfo');},
             isLoggedIn: function(){},
-            logout: function(){}
+            logout: function(){
+                return ASPAAPIProtocol.post('http://localhost:8080/api/account/logout');
+            }
         }
         return service;
     }]);
