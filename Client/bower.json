@@ -20,6 +20,7 @@
     "underscore": "^1.8.3",
     "domReady": "^2.0.1",
     "jshashes": "^1.0.5",
-    "markdown": "^0.5.0"
+    "markdown": "^0.5.0",
+    "angular-ui-router": "^0.3.1"
   }
 }

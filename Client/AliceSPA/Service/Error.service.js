@@ -1,19 +1,19 @@
 define(['/AliceSPA/AliceSPA.module.js'],function(module){
-    module.service('ASPAError',['ASPANotifier','ASPAAPIProtocol','ASPAData',function(ASPANotifier,ASPAAPIProtocol,ASPAData){
+    module.service('ASPAErrorService',['ASPANotifierService','ASPAAPIProtocolService','ASPADataService',function(ASPANotifierService,ASPAAPIProtocolService,ASPADataService){
         var service = {
-            getErrors: function(){ return ASPAData.get('errors');},
+            getErrors: function(){ return ASPADataService.get('errors');},
             getError:function(code){
-                var errors = ASPAData.get('errors');
+                var errors = ASPADataService.get('errors');
                 return _.find($errors,function(error){
                     return error['CODE'] === code;
                 });
             },
             load:function(){
-                ASPAAPIProtocol.get('http://localhost:8080/api/environment/errors').then(function(errors){
-                    ASPAData.set('errors',errors);
-                    ASPANotifier.notifyError(true);
+                ASPAAPIProtocolService.get('/environment/errors').then(function(errors){
+                    ASPADataService.set('errors',errors);
+                    ASPANotifierService.notifyError(true);
                 },function(error){
-                    ASPANotifier.notifyError(false);
+                    ASPANotifierService.notifyError(false);
                 });
             }
         }

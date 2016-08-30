@@ -1,5 +1,5 @@
 define(['/AliceSPA/AliceSPA.module.js'],function(module){
-    module.service('ASPAData',[function(){
+    module.service('ASPADataService',[function(){
         var data = {};
         if(localStorage && !_.isEmpty(localStorage['AliceSPA_Data'])){
             var data = JSON.parse(localStorage['AliceSPA_Data']);

@@ -1,5 +1,5 @@
 define(['/AliceSPA/AliceSPA.module.js','jshashes'],function(module,Hashes){
-    module.service('ASPAAccount',['ASPAAPIProtocol','ASPAData',function(ASPAAPIProtocol,ASPAData){
+    module.service('ASPAAccountService',['ASPAAPIProtocolService','ASPADataService',function(ASPAAPIProtocolService,ASPADataService){
         var service = {
             register: function(){},
             login: function(fields,password){
@@ -7,8 +7,8 @@ define(['/AliceSPA/AliceSPA.module.js','jshashes'],function(module,Hashes){
                     return false;
                 }
                 fields['password'] = new Hashes.SHA256().hex(password);
-                return ASPAAPIProtocol.post('http://localhost:8080/api/account/login',fields).then(function(UserInfo){
-                    ASPAData.set('userInfo',UserInfo);
+                return ASPAAPIProtocolService.post('/account/login',fields).then(function(UserInfo){
+                    ASPADataService.set('userInfo',UserInfo);
                     return UserInfo;
                 });
             },
@@ -24,10 +24,10 @@ define(['/AliceSPA/AliceSPA.module.js','jshashes'],function(module,Hashes){
                 var fields = {'email':userName};
                 return this.login(fields,password);
             },
-            getUserInfo: function(){ return ASPAData.get('userInfo');},
+            getUserInfo: function(){ return ASPADataService.get('userInfo');},
             isLoggedIn: function(){},
             logout: function(){
-                return ASPAAPIProtocol.post('http://localhost:8080/api/account/logout');
+                return ASPAAPIProtocolService.post('/account/logout');
             }
         }
         return service;

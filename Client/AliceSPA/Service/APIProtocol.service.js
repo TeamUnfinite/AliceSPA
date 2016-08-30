@@ -1,10 +1,11 @@
 define(['/AliceSPA/AliceSPA.module.js'],function(module){
-    module.service('ASPAAPIProtocol',['$q','$http','ASPAData',function($q,$http,ASPAData){
+    module.service('ASPAAPIProtocolService',['ConfigService','$q','$http','ASPADataService',function(ConfigService,$q,$http,ASPADataService){
         var handle = function(method,url,data,config,options){
             data = data || {};
             config = config || {};
             config.headers = config.headers || {};
-            var userInfo = ASPAData.get('userInfo');
+            url = ConfigService.getApiUrlPrefix() + url;
+            var userInfo = ASPADataService.get('userInfo');
             if(!_.isEmpty(userInfo)){
                 config.headers['AliceSPA-UserID'] = userInfo.id;
                 config.headers['AliceSPA-WebToken'] = userInfo.web_token;

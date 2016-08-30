@@ -1,5 +1,5 @@
 define(['/AliceSPA/AliceSPA.module.js'],function(module){
-    module.service('ASPANotifier',[function(){
+    module.service('ASPANotifierService',[function(){
         var data = {};
         var register  = function(key,callback){
             if(data[key] === true || data[key] === false){ // notified
