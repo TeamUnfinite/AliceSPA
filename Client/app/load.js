@@ -1,7 +1,7 @@
 define([
-    'domReady!',
-    '/app/app.module.js'
+    '/app/app.module.js',
+    'domReady!'
     ],
-    function (document) {
+    function (appModule,document) {
         angular.bootstrap(document,['app']);
     });

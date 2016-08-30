@@ -1,9 +1,11 @@
 define([],function () {
-    var app = angular.module('app',['ui.router']);
+    var app = angular.module('app',['AliceSPA','ui.router']);
     app.config(['$stateProvider',function($stateProvider){
         $stateProvider.state('test',{
-            url:'/',
-            templateUrl:'/app/test.html'
+            url:'',
+            templateUrl:'/app/test.html',
+            controller:function(ASPACaptchaService,$scope){
+            }
         })
     }]);
     app.run([function(){
