@@ -1,0 +1,15 @@
+var AliceSPA = AliceSPA || {};
+AliceSPA.Config = {
+    Core:{
+        'Protocol':'http',
+        'ServerHost':'localhost',
+        'ServerPort':'8080',
+        'ClientHost':'localhost',
+        'ClientPort':'8081',
+        'ApiPath':'/api'
+    },
+    App:{
+        path: '/app_empty',
+        moduleName: 'app_empty'
+    }
+}

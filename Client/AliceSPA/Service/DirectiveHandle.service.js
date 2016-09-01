@@ -16,10 +16,10 @@ define(['/AliceSPA/AliceSPA.module.js','/AliceSPA/AngularExt.js'],function(modul
                 return handles[directiveName][handleName];
             }
         };
-        module.getAngular().AliceSPAExt.DirectiveHandle.ServiceInterface = serviceInterface;
+        AliceSPA.DirectiveHandle.ServiceInterface = serviceInterface;
 
         return _.extend({
 
-        },module.getAngular().AliceSPAExt.DirectiveHandle.Functions);
+        },AliceSPA.DirectiveHandle.Functions);
     }]);
 });

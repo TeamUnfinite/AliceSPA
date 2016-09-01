@@ -1,9 +1,9 @@
 define([],function () {
-    var app = angular.ASPAModule('app',['AliceSPA','ui.router']);
+    var app = angular.ASPAModule(AliceSPA.Config.App.moduleName,['AliceSPA','ui.router']);
     app.config(['$stateProvider',function($stateProvider){
         $stateProvider.state('test',{
             url:'',
-            templateUrl:'/app/test.html',
+            templateUrl:'/app_example/test.html',
             controller:function(ASPACaptchaService,$scope){
             }
         })

@@ -1,7 +1,7 @@
 define([
     '/AliceSPA/AngularExt.js',
     '/AliceSPA/AliceSPA.module.js',
-    '/AliceSPA/Config/Config.js',
+    '/AliceSPA/Constant/Config.constant.js',
     '/AliceSPA/Service/Account.service.js',
     '/AliceSPA/Service/APIProtocol.service.js',
     '/AliceSPA/Service/Data.service.js',
@@ -13,5 +13,5 @@ define([
     '/AliceSPA/Directive/ImageCaptcha.directive.js'
     ],
     function(){
-        console.log('Alice SPA Loaded.');
+        console.log('Alice SPA Loaded.',AliceSPA);
     });

@@ -1,8 +1,7 @@
+var AliceSPA = AliceSPA || {};
 (function(angular){
-    if(angular.AliceSPAExt){
-        return;
-    }
-    angular.AliceSPAExt = {
+
+    AliceSPA = _.extend({
         'DirectiveHandle':{
             'Functions':{
             },
@@ -10,12 +9,12 @@
         },
         'Modules':{
         }
-    };
+    },AliceSPA);
     angular.ASPAModule = function(moduleName,deps){
         var module = angular.module(moduleName,deps);
         module.getAngular = function(){return angular;};
 
-        var ext = angular.AliceSPAExt;
+        var ext = AliceSPA;
         var extModule = ext.Modules[moduleName] = {};
         //ASPADirective
         module.ASPADirective = function(directiveName,defineFun,handleType){

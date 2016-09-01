@@ -1,10 +1,15 @@
-define(['/AliceSPA/AliceSPA.module.js'],function(module){
-    module.constant('AliceSPAConfig',{
+var AliceSPA = AliceSPA || {};
+AliceSPA.Config = {
+    Core:{
         'Protocol':'http',
         'ServerHost':'localhost',
         'ServerPort':'8080',
         'ClientHost':'localhost',
         'ClientPort':'8081',
         'ApiPath':'/api'
-    })
-});
+    },
+    App:{
+        path: '/app_example',
+        moduleName: 'app_example'
+    }
+}

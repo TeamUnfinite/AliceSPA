@@ -1,5 +1,6 @@
+var APP_PATH = AliceSPA.Config.App.path;
 var BOWER_PATH = '/bower_components';
-var AliceSPA_PATH = '/AliceSPA'
+var AliceSPA_PATH = '/AliceSPA';
 require.config({
     baseUrl:'/',
     paths: {
@@ -10,7 +11,7 @@ require.config({
         'angular-ui-router': BOWER_PATH + '/angular-ui-router/release/angular-ui-router',
         'underscore': BOWER_PATH + '/underscore/underscore-min',
         'AliceSPA': AliceSPA_PATH + '/load',
-        'app': '/app/load'
+        'app': APP_PATH + '/script/load'
     },
     shim: {
         'angular-ui-router':{
