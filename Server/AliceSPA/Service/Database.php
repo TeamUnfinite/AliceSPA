@@ -1,7 +1,7 @@
 <?php
 namespace AliceSPA\Service;
 class Database{
-   private static $_instance;
+    private static $_instance;
 
     private function __construct(){
     }
@@ -13,7 +13,7 @@ class Database{
         if(!(self::$_instance instanceof medoo)){
             self::$_instance = new \medoo(\AliceSPA\Helper\Config::getConfig()['medooConfig']);
         }
-        
+
         return self::$_instance;
     }
 };

@@ -115,12 +115,17 @@ class Utilities{
     //  $captchaType
     //                  false : Not effective.
     //                  string : Accessable with currect captcha of thie captcha type. e.g. 'image' , 'SMS'
-    public static function secureRoute($route,$roles = true,$captchaType = false){
+    public static function secureRoute($route,$roles = true,$captchaType = false,$directDatabase = false){
+        if(!empty($directDatabase)){
+            $route = $route->add(\AliceSPA\Middleware\directDatabase::class);
+            $route->setArgument('AliceSPA_DirectDatabase',$directDatabase);
+        }
+        
         if($roles !== false){
             $route = $route->add(\AliceSPA\Middleware\Authentication::class);
             if(is_array($roles) && count($roles) > 0){
                 $route->setArgument('AliceSPA_Roles',$roles);
-            }            
+            }
         }
 
         if(!empty($captchaType)){

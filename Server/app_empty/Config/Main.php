@@ -9,7 +9,7 @@ $coreConfig = [
     'SMSCaptchaSpan' => 60, //SECOND, OPTION, DEFAULT one minute
     'timezone' => 'Asia/Shanghai', //OPTION, php date.timezone
     'autoincrementBeginValue' => 1, //OPTION, DEFAULT 1, for database autoincrement id
-    'displayPHPErrors'=>true, //OPTION, DEFAULT false, php display_errors
+    'displayPHPErrors'=>false, //OPTION, DEFAULT false, php display_errors
     'showAPIExceptoin' => true, //OPTION DEFAULT false, if true api response will have an APIException field for details when APIExceptoin occured.
     'CORSOrigin' => 'http://localhost:8081', //OPTION, DEFAULT false, if set CORS will work, this value will be filled in to HTTP header Access-Control-Allow-Origin
 
