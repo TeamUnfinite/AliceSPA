@@ -1,5 +1,8 @@
 <?php
 namespace AliceSPA\Service;
+use AliceSPA\Service\Database as db;
+use AliceSPA\Helper\Config as configHelper;
+use AliceSPA\Helper\Utilities as utils;
 class Session{
     private $session = null;
 
@@ -18,7 +21,44 @@ class Session{
         return self::$_instance;
     }
 
-    public function setSession($session){
+    public function loadSession($sessionId){
+        $db = db::getInstance();
+        $session = null;
+        if(!empty($sessionId)){
+            $sessionValidTime = configHelper::getCoreConfig()['sessionValidTime'];
+            $sessions = $db->select('session',
+                '*',
+                [
+                    'AND' => [
+                        'id' => $sessionId,
+                        'create_time[>]' => utils::datetimePHP2Mysql(time() - $sessionValidTime)
+                    ]
+                ]);
+            if(!empty($sessions)){
+                $session = $sessions[0]['session'];
+                $session = json_decode($session,true);
+
+            }
+        }
+
+        if($session === null){
+            $sessionId = utils::generateUniqueId();
+            $session  = [];
+            $db->insert('session',['id' => $sessionId, 'session' => json_encode($session)]);
+        }
+        $this->setSession($session);
+        return $sessionId;
+    }
+
+    public function storeSession($sessionId){
+        $db = db::getInstance();
+        $session = $this->getSession();
+        if($session !== false){
+            $db->update('session',['session'=>json_encode($session)],['id' => $sessionId]);
+        }
+    }
+
+    private function setSession($session){
         $this->session = $session;
     }
 
