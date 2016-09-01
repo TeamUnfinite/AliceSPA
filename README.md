@@ -6,6 +6,7 @@ PHP 5.6
 GD2
 FreeType
 PDO
+Mysql 5.7 (type JSON support)
 
 ```
 mv Server/Config/Main.php.example Server/Config/Main.php
