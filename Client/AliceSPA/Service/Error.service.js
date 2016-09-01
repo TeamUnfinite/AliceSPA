@@ -9,7 +9,7 @@ define(['/AliceSPA/AliceSPA.module.js'],function(module){
                 });
             },
             load:function(){
-                ASPAAPIProtocolService.get('/environment/errors').then(function(errors){
+                ASPAAPIProtocolService.ASPAGet('/environment/errors').then(function(errors){
                     ASPADataService.set('errors',errors);
                     ASPANotifierService.notifyError(true);
                 },function(error){

@@ -6,7 +6,8 @@ define(['/AliceSPA/AngularExt.js'],function () {
             alert('ASPA: Not found AliceSPAConfig. Check /your_app/script/Config/ASPAConfig.js by default.');
         }
     }]);
-    module.run(['ASPAErrorService','ASPAAccountService','ASPANotifierService','ASPADataService',function(ASPAErrorService,ASPAAccountService,ASPANotifierService,ASPADataService){
+    module.run(['ASPAErrorService','ASPAAccountService','ASPANotifierService','ASPADataService','ASPASessionService',function(ASPAErrorService,ASPAAccountService,ASPANotifierService,ASPADataService,ASPASessionService){
+        ASPASessionService.checkSession();
         ASPAErrorService.load();
     }]);
     return module;

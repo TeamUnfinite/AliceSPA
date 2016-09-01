@@ -7,7 +7,7 @@ define(['/AliceSPA/AliceSPA.module.js','jshashes'],function(module,Hashes){
                     return false;
                 }
                 fields['password'] = new Hashes.SHA256().hex(password);
-                return ASPAAPIProtocolService.post('/account/login',fields).then(function(UserInfo){
+                return ASPAAPIProtocolService.ASPAPost('/account/login',fields).then(function(UserInfo){
                     ASPADataService.set('userInfo',UserInfo);
                     return UserInfo;
                 });
@@ -27,7 +27,7 @@ define(['/AliceSPA/AliceSPA.module.js','jshashes'],function(module,Hashes){
             getUserInfo: function(){ return ASPADataService.get('userInfo');},
             isLoggedIn: function(){},
             logout: function(){
-                return ASPAAPIProtocolService.post('/account/logout');
+                return ASPAAPIProtocolService.ASPAPost('/account/logout');
             }
         }
         return service;

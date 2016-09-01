@@ -8,7 +8,8 @@ define([],function () {
             }
         })
     }]);
-    app.run([function(){
+    app.run(['ASPAAccountService',function(a){
+        a.loginByUserName('1','1');
     }]);
 
     return app;

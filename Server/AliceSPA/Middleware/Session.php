@@ -7,6 +7,9 @@ use AliceSPA\Service\Session as sessionServ;
 use AliceSPA\Service\APIProtocol as apip;
 class Session{
     function __invoke($req,$res,$next){
+        if($req->isOptions()){
+            return $res;
+        }
         $db = db::getInstance();
 
         $sessionId = utils::getRequestHeader($req,'AliceSPA-SessionID');

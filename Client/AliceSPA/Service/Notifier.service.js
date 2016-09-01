@@ -22,7 +22,9 @@ define(['/AliceSPA/AliceSPA.module.js'],function(module){
                 registerError: function(callback) { register('error',callback); },
                 notifyError: function(isSuccess) { notify('error',isSuccess); },
                 registerUserInfo:function(callback) { register('userInfo',callback); },
-                notifyUserInfo:function(isSuccess) { notify('userInfo',isSuccess); }
+                notifyUserInfo:function(isSuccess) { notify('userInfo',isSuccess); },
+                registerSessionId: function(callback){ register('sessionId',callback);},
+                notifySessionId: function(isSuccess){ notify('sessionId',isSuccess);}
             };
         }
     ]);

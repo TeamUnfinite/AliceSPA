@@ -1,5 +1,5 @@
 <?php
-$MIDDLEWARE_PATH = $SERVER_PATH . '/Middleware';
+$MIDDLEWARE_PATH = $AliceSPA_PATH . '/Middleware';
 
 require $MIDDLEWARE_PATH . '/Authentication.php';
 require $MIDDLEWARE_PATH . '/Captcha.php';

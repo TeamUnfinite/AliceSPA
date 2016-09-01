@@ -6,6 +6,9 @@ define(['/AliceSPA/AliceSPA.module.js'],function(module){
             },
             'getApiUrlPrefix':function(){
                 return this.getUrlPrefix() + AliceSPAConfig.ApiPath;
+            },
+            'getAliceSPAApiUrlPrefix':function(){
+                return this.getUrlPrefix() + AliceSPAConfig.AliceSPAApiPath;
             }
         }
     }]);
