@@ -17,7 +17,7 @@ class DirectDatabase{
     }
 
     public function check($rule,$data){
-        if(empty($rule) || empty($rule['table']) || empty($rule['actions'])){
+        if(empty($rule)){
             $apip->pushError(7);
             return false;
         }
@@ -28,7 +28,7 @@ class DirectDatabase{
             $apip->pushError(8);
             return false;
         }
-        if($table !== $rule['table']){
+        if(empty($rule[$table])){
             $apip->pushError(9);
             return false;
         }
@@ -37,7 +37,7 @@ class DirectDatabase{
             $apip->pushError(8);
             return false;
         }
-        if(!in_array($action,$rule['actions'])){
+        if(!in_array($action,$rule[$table])){
             $apip->pushError(9);
             return false;
         }
