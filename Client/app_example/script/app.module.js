@@ -8,8 +8,10 @@ define([],function () {
             }
         })
     }]);
-    app.run(['ASPAAccountService',function(a){
-        a.loginByUserName('1','1');
+    app.run(['ASPADirectDatabaseService',function(ASPADirectDatabaseService){
+        
+
+
     }]);
 
     return app;

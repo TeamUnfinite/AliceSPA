@@ -1,6 +1,5 @@
 var AliceSPA = AliceSPA || {};
 (function(angular){
-
     AliceSPA = _.extend({
         'DirectiveHandle':{
             'Functions':{

@@ -11,6 +11,7 @@ define([
     '/AliceSPA/Service/Captcha.service.js',
     '/AliceSPA/Service/DirectiveHandle.service.js',
     '/AliceSPA/Service/Session.service.js',
+    '/AliceSPA/Service/DirectDatabase.service.js',
     '/AliceSPA/Directive/ImageCaptcha.directive.js'
     ],
     function(){
