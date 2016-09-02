@@ -5,15 +5,15 @@
   <meta charset="utf-8"/>
   <title>Alice SPA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-  <script src="/bower_components/underscore/underscore-min.js"></script>
+  <script src="/bower_components/underscore/underscore-min.js"></script> <!--some dependencies libraries of AliceSPA-->
   <script src="/bower_components/jshashes/hashes.min.js"></script>
   <script src="/bower_components/angular/angular.min.js"></script>
   <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-  <script src="script/Config/Config.js"></script>
-  <script src="/AliceSPA_dist/AliceSPA.min.js"></script>
-  <script src="script/app.module.js"></script>
+  <script src="script/Config/Config.js"></script><!--config file should be loaded before AliceSPA-->
+  <script src="/AliceSPA_dist/AliceSPA.min.js"></script><!--load AliceSPA-->
+  <script src="script/app.module.js"></script><!--load your modal-->
 </head>
-<body ng-app="app_empty">
+<body ng-app="app_empty"><!--angularjs-->
     <div ui-view></div>
 </body>
 

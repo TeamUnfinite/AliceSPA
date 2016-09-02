@@ -7,8 +7,6 @@ app.config(['$stateProvider',function($stateProvider){
         }
     })
 }]);
-app.run(['ASPASessionService',function(ASPASessionService){
-    ASPASessionService.clearSessions();
-
+app.run(['ASPAAPIProtocolService',function(ASPAAPIProtocolService){
 
 }]);

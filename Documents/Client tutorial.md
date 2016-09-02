@@ -1,0 +1,126 @@
+#Create your app
+AliceSPA Client needs:
+
+* A Browser
+
+1. Move into `Client` dir.
+2. Run `bower install` to install the dependencies for AliceSPA.
+3. Copy and rename `app_empty_dist` to the same dir with your app name.
+4. Move into `yourAppName/script/Config` dir.
+5. Configure `Config.js`.
+7. Configure http server and run.
+
+#Develop on AngularJS
+AliceSPA Client is based on [AngularJS 1.x](https://angularjs.org/). AliceSPA provided a module `AliceSPA`, it had some services and directives for communicating to AliceSPA Server. you can inject this module into your app.
+
+#AliceSPA Client
+##index.html
+The entry of app is index.html.
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Alice SPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <script src="/bower_components/underscore/underscore-min.js"></script> <!--some dependencies libraries of AliceSPA-->
+  <script src="/bower_components/jshashes/hashes.min.js"></script>
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="script/Config/Config.js"></script><!--config file should be loaded before AliceSPA-->
+  <script src="/AliceSPA_dist/AliceSPA.min.js"></script><!--load AliceSPA-->
+  <script src="script/app.module.js"></script><!--load your modal-->
+</head>
+<body ng-app="app_empty"><!--angularjs-->
+    <div ui-view></div>
+</body>
+</html>
+```
+It is very simple to understand.
+
+##Angular extensions
+AliceSPA enhanced angularjs with some new features.
+
+###angular.ASPAModule
+```
+var module = angular.ASPAModule(moduleName,dependencies);//Arguments are same to angular.module(...), it return an ASPAModule with some new features.
+```
+###ASPAModule.ASPADirective
+```
+aspaModule.ASPAModule(directiveName,defineFunction,handleType);
+```
+`ASPADirectiveHandleService` will auto generate getter and setter methods for ASPADirective with handleType. See Services.ASPADirectiveHandleService section of this tutorial.
+
+##Services
+###ASPAAPIProtocolService
+```
+ASPAAPIProtocolService.get(url,config,options);//url will be added prefix with config's ApiPath, config is angular $http request config param, options is not used. Request will occurs server's accessbility verify (role, captcha).
+ASPAAPIProtocolService.post(url,data,config,options);data is post body.
+ASPAAPIProtocolService.VanillaGet(url,isInternal,config,options);//MUST set isInternal to false.
+ASPAAPIProtocolService.VanillaPost(url,data,isInternal,config,options);//MUST set isInternal to false.
+ASPAAPIProtocolService.makeImageCaptchaOptions(options,ccaptchaId,captchaCode);//generate or fill options with image captcha info, pass returned options to request methods.
+```
+
+###ASPAAccountService
+```
+ASPAAccountService.register(fields,password);//fields = {any of user id field, such as user_name, email, telephone}
+ASPAAccountService.registerByUserName(userName,password);
+ASPAAccountService.registerByEmail(email,password);
+ASPAAccountService.registerByTelephone(telephone,password);
+ASPAAccountService.login(fields,password);//same as register()
+ASPAAccountService.loginByUserName(userName,password);
+ASPAAccountService.loginByEmail(email,password);
+ASPAAccountService.loginByTelephone(telephone,password);
+//upper functions will return a promise, user info will be returned if it resolved.
+ASPAAccountService.getUserInfo();//return user info or null
+ASPAAccountService.isLoggedIn();//return true or false
+ASPAAccountService.logout();//remove user info from local storage, no request will be sent.
+```
+###ASPADataService
+```
+ASPADataService.set(key,value);//store to local storage
+ASPADataService.get(key);//get value from local storage
+ASPADataService.getAll(key);//get an object contains all values
+```
+###ASPADirectDatabaseService
+```
+ASPADirectDatabaseService.select(url,tableName,columns,where);
+ASPADirectDatabaseService.insert(url,tableName,data);
+ASPADirectDatabaseService.update(url,tableName,data,where);
+ASPADirectDatabaseService.remove(url,tableName,where);
+```
+Api must be setted direct database on Server.
+
+Columns,data,where is pass to [medoo](http://medoo.in/).
+
+###ASPADirectiveHandleService
+```
+ASPADirectiveHandleService.setHandle(handleType,handleName,data);//diffrent handleType has its own handle space.
+ASPADirectiveHandleService.getHandle(handleType,handleName);//get handle data of handle in handleType space
+ASPADirectiveHandleService.set*handleType*Handle(handleName,data);//Auto generated if you use Angular.ASPAModule to define your module, and module.ASPADirective to define your directive.
+ASPADirectiveHandleService.get*handleType*Handle(handleName);//Auto generated if you use Angular.ASPAModule to define your module, and module.ASPADirective to define your directive.
+```
+If you use `angular.ASPAModule(...).ASPADirective(directiveName,defineFunction,handleType)` to define your directive, then you can use upper methods generated by AliceSPA.
+
+###ASPAErrorService
+```
+ASPAErrorService.getErrors();
+ASPAErrorService.getError(code);
+```
+###ASPANotifierService
+```
+ASPANotifierService.register(key,callback(isSuccess));//Register a callback to array key. Callback will be called until array key is notified. isSuccess is from notify method's param.
+ASPANotifierService.notify(key,isSuccess);//Notify array key, and call its callbacks with isSuccess.
+```
+###ASPASessionService
+```
+ASPASessionService.checkSession();//Send a request to make session valid, AliceSPA call it when app start.
+ASPASessionService.getSessionId();
+ASPASessionService.clearSessions;//Clear server expired sessions, current user must have role 'admin'
+```
+##Directives
+###aspaCaptchaImage
+```
+<aspa-captcha-image aspa-handle='handleName'></aspa-captcha-image>
+```
+Show an image captcha. It will show a new image if you click on it. You can use `ASPADirectiveHandleService.getASPACaptchaImageHandle(handleName)` to get current image captcha's info and pass it's id and user input code to  `ASPAAPIProtocolService.makeImageCaptchaOptions(...)`.

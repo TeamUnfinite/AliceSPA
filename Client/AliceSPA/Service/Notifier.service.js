@@ -18,6 +18,8 @@ module.service('ASPANotifierService',[function(){
         }
     }
     return {
+            register:register,
+            notify:notify,
             registerError: function(callback) { register('error',callback); },
             notifyError: function(isSuccess) { notify('error',isSuccess); },
             registerUserInfo:function(callback) { register('userInfo',callback); },

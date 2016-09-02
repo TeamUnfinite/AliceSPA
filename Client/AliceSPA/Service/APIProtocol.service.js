@@ -2,6 +2,8 @@ module.service('ASPAAPIProtocolService',['ConfigService','$q','$http','ASPADataS
     var handle = function(method,url,data,config,options,isAliceSPARequest,withUser,withSession,fullResponse){
         data = data || {};
         config = config || {};
+        options = options || {};
+        data = _.extend(data,options);
         config.headers = config.headers || {};
         url = (isAliceSPARequest?ConfigService.getAliceSPAApiUrlPrefix():ConfigService.getApiUrlPrefix()) + url;
         if(withUser){
@@ -84,6 +86,17 @@ module.service('ASPAAPIProtocolService',['ConfigService','$q','$http','ASPADataS
         },
         VanillaPost:function(url,data,isInternal,config,options){
             return handle('POST',url,data,config,options,isInternal,false,false,true);
+        },
+        makeImageCaptchaOptions:function(options,captchaId,captchaCode){
+            options = options || {};
+            if(!captchaId || !captchaCode){
+                return options;
+            }
+            options['AliceSPA_Captcha'] = {
+                'id': captchaId,
+                'code': captchaCode
+            }
+            return options;
         }
     };
 }]);
