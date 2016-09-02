@@ -9,14 +9,14 @@ AliceSPA-SessionID: session id | OPETION
 ###request body
 ```
 {
-    "YOUR":"DATA",
-    "AliceSPA_Captcha":{  verified by AliceSPA automatically.
+    "YOUR":"DATA",//customer app data.
+    "AliceSPA_Captcha":{  //verified by AliceSPA automatically.
         "id": captcha ID,
         "code": captcha code
         }
 }
 ```
-##response format
+###response format
 ```
 {
     'status': 'SUCCESS' or 'FAILURE',

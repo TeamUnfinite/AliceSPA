@@ -11,7 +11,7 @@ $coreConfig = [
     'autoincrementBeginValue' => 1, //OPTION, DEFAULT 1, for database autoincrement id
     'displayPHPErrors'=>true, //OPTION, DEFAULT false, php display_errors
     'showAPIExceptoin' => true, //OPTION DEFAULT false, if true api response will have an APIException field for details when APIExceptoin occured.
-    'CORSOrigin' => 'http://localhost:8081', //OPTION, DEFAULT false, if set CORS will work, this value will be filled in to HTTP header Access-Control-Allow-Origin
+    'CORSOrigin' => 'false', //OPTION, DEFAULT false, if set CORS will work, this value will be filled in to HTTP header Access-Control-Allow-Origin
 
     //Tian Xia Chang Tong SMS accout info, http://www.opwo.cn
     'SMS_TXCT_UserId' => 'User ID', //OPTION
