@@ -1,13 +1,13 @@
 #Server tutorial
 #Create you app
-0. AliceSPA Server needs:
-    * Mysql requires 5.7 version at least.
-    * PHP requires 5.6 version at least, with extensions:
-        * GD2
-        * FreeType
-        * PDO-Mysql
-    * A HTTP Server: apache, nginx, etc
-        * There is an example config file at `Config/nginx/nginx.conf.example` for nginx user.
+AliceSPA Server needs:
+* Mysql requires 5.7 version at least.
+* PHP requires 5.6 version at least, with extensions:
+    * GD2
+    * FreeType
+    * PDO-Mysql
+* A HTTP Server: apache, nginx, etc
+    * There is an example config file at `Config/nginx/nginx.conf.example` for nginx user.
 1. Move into `server` dir.
 2. Run `composer install` to install the dependencies for AliceSPA.
 3. Copy and rename `app_empty` to the same dir with your app name.
