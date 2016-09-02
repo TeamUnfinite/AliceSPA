@@ -1,5 +1,4 @@
-#Server tutorial
-#Create you apphttps://github.com/TeamUnfinite/AliceSPA/edit/master/Documents/Server%20tutorial.md#fork-destination-box
+#Create you app
 AliceSPA Server needs:
 
 * Mysql requires 5.7 version at least.
@@ -35,19 +34,19 @@ You can use slim framework and medoo to do lots of things. AliceSPA provided the
 * Accessibility controll: verifying role and captcha automatically.
 * Direct database access (request can modify database table direct without controller under accessibility controll)
 
-###Account
+##Account
 ```
 $authServ = \AliceSPA\Service\Authentication::getInstance(); //get accout service instance
 $authServ->getUserInfo();//get user info
 ```
 Login, logout and outhers functions provided by AliceSPA server and client internally. You don't need to develop. See client's tutorial.
 
-###Database
+##Database
 ```
 $db = \AliceSPA\Service\Database::getInstance();//get medoo instance
 ```
 
-###Session
+##Session
 ```
 $sessionServ = \AliceSPA\Service\Session::getInstance();//get session service instance
 $sessionServ->getSession();//get session array
@@ -56,11 +55,11 @@ $sessionServ->set($Key,$value);//set value in session array
 ```
 Session will be loaded from database and stored into database, don't care the details.
 
-###Captcha
+##Captcha
 AliseSPA will generate catpcha and verify it automatically. See client's tutorial. Tutorial of developing your captcha services is in developing.
 
-###Accessibility controll
-#####Role
+##Accessibility controll
+###Role
 ```
 use \AliceSPA\Helper\Utilities as utils;
 utils::secureRoute(
@@ -78,7 +77,7 @@ Every one has role `visitor`.
 
 You can set your roles in `Server/yourAppName/Config/Roles.php`.
 
-#####Captcha
+###Captcha
 ```
 use \AliceSPA\Helper\Utilities as utils;
 utils::secureRoute(
@@ -91,7 +90,7 @@ AliceSPA has many types of captcha such as `image` and `SMS`.
 
 Every type has many captchas for every visitor, stored in session. User can access api only if any captcha had correct type, id ,code and not expired of this user.
 
-#####Direct database access
+###Direct database access
 ```
 use \AliceSPA\Helper\Utilities as utils;
 utils::secureRoute(
