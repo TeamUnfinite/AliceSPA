@@ -82,6 +82,12 @@ class Session{
         }
         return $this->session[$key];
     }
+
+    public function clearSessions(){
+        $db = db::getInstance();
+        $db->delete('session',['create_time[<]'=>utils::datetimePHP2Mysql(time()-configHelper::getCoreConfig()['sessionValidTime'])]);
+        return true;
+    }
 };
 
 $container['session'] = function(){

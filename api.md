@@ -1,7 +1,7 @@
 #account
 
 ####login
-######POST /api/account/login JSON
+######POST /AliceSPA/api/account/login JSON
 ######REQ
 user_name OR|AND telephone OR|AND email
 password
@@ -11,7 +11,7 @@ user info
 NONE
 
 ####register
-######POST /api/account/register JSON
+######POST /AliceSPA/api/account/register JSON
 ######REQ
 user_name OR|AND telephone OR|AND email
 password
@@ -22,13 +22,13 @@ Auto login after registered.
 
 #captcha
 ####image
-######GET /api/captcha/image
+######GET /AliceSPA/api/captcha/image
 ######REQ
 NONE
 ######RES
 ```
 {
     "id": captcha id,
-    "data": captcha image data encoded by base 64
+    "data": captcha image data encoded by base 64, PNG
 }
 ```

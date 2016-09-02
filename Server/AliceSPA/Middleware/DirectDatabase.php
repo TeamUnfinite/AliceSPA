@@ -5,8 +5,8 @@ use \AliceSPA\Service\DirectDatabase as ddb;
 /*
 Rule:
 {
-    "table": "table name",
-    "actions": ["select","insert","delete","update"]
+    "table name":["select","insert","update","delete"],
+    ...
 }
 Request:
 {
