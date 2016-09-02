@@ -1,4 +1,4 @@
-var app = angular.ASPAModule('app_example',['AliceSPA','ui.router']);
+var app = angular.ASPAModule('app_example_dist',['AliceSPA','ui.router']);
 app.config(['$stateProvider',function($stateProvider){
     $stateProvider.state('test',{
         url:'',

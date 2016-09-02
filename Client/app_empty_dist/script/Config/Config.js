@@ -9,4 +9,4 @@ AliceSPA.Config = {
         'ApiPath':'/api',
         'AliceSPAApiPath':'/AliceSPA/api'
     }
-};
+}

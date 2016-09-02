@@ -5,9 +5,28 @@
   <meta charset="utf-8"/>
   <title>Alice SPA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-  <script data-main="script/Config/Config" src="/bower_components/requirejs/require.js"></script>
+  <script src="/bower_components/underscore/underscore-min.js"></script>
+  <script src="/bower_components/jshashes/hashes.min.js"></script>
+  <script src="/bower_components/angular/angular.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="script/Config/Config.js"></script>
+  <script src="/AliceSPA/AngularExt.js"></script>
+  <script src="/AliceSPA/AliceSPA.module.js"></script>
+  <script src="/AliceSPA/Constant/Config.constant.js"></script>
+  <script src="/AliceSPA/Service/Account.service.js"></script>
+  <script src="/AliceSPA/Service/APIProtocol.service.js"></script>
+  <script src="/AliceSPA/Service/Captcha.service.js"></script>
+  <script src="/AliceSPA/Service/Config.service.js"></script>
+  <script src="/AliceSPA/Service/Data.service.js"></script>
+  <script src="/AliceSPA/Service/DirectDatabase.service.js"></script>
+  <script src="/AliceSPA/Service/DirectiveHandle.service.js"></script>
+  <script src="/AliceSPA/Service/Error.service.js"></script>
+  <script src="/AliceSPA/Service/Notifier.service.js"></script>
+  <script src="/AliceSPA/Service/Session.service.js"></script>
+  <script src="/AliceSPA/Directive/ImageCaptcha.directive.js"></script>
+  <script src="script/app.module.js"></script>
 </head>
-<body>
+<body ng-app="app_example">
     <div ui-view></div>
 </body>
 

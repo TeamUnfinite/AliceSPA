@@ -8,9 +8,5 @@ AliceSPA.Config = {
         'ClientPort':'8081',
         'ApiPath':'/api',
         'AliceSPAApiPath':'/AliceSPA/api'
-    },
-    App:{
-        path: '/app_empty',
-        moduleName: 'app_empty'
     }
-}
+};

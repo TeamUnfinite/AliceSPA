@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ruojianll/AliceSPA#readme",
   "dependencies": {
+    "google-closure-compiler": "^20160822.1.0",
     "gulp": "^3.9.1"
   }
 }
