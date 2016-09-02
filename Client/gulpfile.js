@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var compilerPackage = require('google-closure-compiler');
 var closureCompiler = compilerPackage.gulp();
 
-gulp.task('default',function(){
+gulp.task('build',function(){
     return closureCompiler({
           js: [
               'AliceSPA/AngularExt.js',
