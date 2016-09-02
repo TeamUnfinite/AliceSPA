@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for linux-glibc2.5 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: AliceSPA
+-- Host: localhost    Database: alicespa
 -- ------------------------------------------------------
--- Server version	5.6.28-0ubuntu0.15.10.1
+-- Server version	5.7.14-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,7 +34,7 @@ CREATE TABLE `account` (
   `web_token_create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,18 +60,18 @@ DROP TABLE IF EXISTS `session`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `session` (
   `id` varchar(30) NOT NULL,
-  `session` varchar(500) DEFAULT NULL,
+  `session` json DEFAULT NULL,
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping events for database 'AliceSPA'
+-- Dumping events for database 'alicespa'
 --
 
 --
--- Dumping routines for database 'AliceSPA'
+-- Dumping routines for database 'alicespa'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -83,4 +83,4 @@ CREATE TABLE `session` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-24 15:16:19
+-- Dump completed on 2016-09-02  9:43:13
