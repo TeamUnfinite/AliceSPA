@@ -7,8 +7,8 @@ app.config(['$stateProvider',function($stateProvider){
         }
     })
 }]);
-app.run(['ASPADirectDatabaseService',function(ASPADirectDatabaseService){
-
+app.run(['ASPASessionService',function(ASPASessionService){
+    ASPASessionService.clearSessions();
 
 
 }]);

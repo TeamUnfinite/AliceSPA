@@ -21,8 +21,12 @@ module.service('ASPASessionService',['ASPADataService','ASPANotifierService','AS
             ASPANotifierService.notifySessionId(false);
         });
     }
+    var clearSessions = function(){
+        ASPAAPIProtocolService.ASPAPost('/environment/clearSessions');
+    }
     return {
         checkSession:checkSession,
-        getSessionId:getSessionId
+        getSessionId:getSessionId,
+        clearSessions:clearSessions
     };
 }]);
