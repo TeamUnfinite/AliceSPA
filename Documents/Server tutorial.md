@@ -8,6 +8,7 @@ AliceSPA Server needs:
     * PDO-Mysql
 * A HTTP Server: apache, nginx, etc
     * There is an example config file at `Config/nginx/nginx.conf.example` for nginx user.  
+  
 1. Move into `server` dir.
 2. Run `composer install` to install the dependencies for AliceSPA.
 3. Copy and rename `app_empty` to the same dir with your app name.
