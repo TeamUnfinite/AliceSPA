@@ -18,7 +18,7 @@ http {
     server {
         listen       8080;
         server_name  localhost;
-        root /home/rj/Desktop/AliceSPA/Server/app_example/public;
+        root /home/rj/Desktop/AliceSPA/Server/app_empty/public;
         index index.html index.php;
 
         location / {
