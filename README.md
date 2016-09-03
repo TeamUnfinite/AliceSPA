@@ -1,3 +1,5 @@
+![Logo](https://github.com/TeamUnfinite/AliceSPA/blob/master/Documents/logo.png)
+
 # AliceSPA
 ##middleware, service and API
 Service may implemented a singleton pattern for middleware and DI'ed for API to call it.
