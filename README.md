@@ -5,6 +5,6 @@
 
 [Documents](https://github.com/TeamUnfinite/AliceSPA/wiki)
 #Free
-AliceSPA in under MIT license.
+AliceSPA is licensed under the MIT license.
 #Requirements
 [Click This](https://github.com/TeamUnfinite/AliceSPA/wiki/1.-Developing-requirements)
