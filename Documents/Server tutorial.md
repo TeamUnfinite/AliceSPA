@@ -6,7 +6,7 @@ AliceSPA Server needs:
     * GD2
     * FreeType
     * PDO-Mysql
-* A HTTP Server: apache, nginx, etc.
+* An HTTP Server: apache, nginx, etc.
     * There is an example config file at `Config/nginx/nginx.conf.example` for nginx user.
 
 1. Move into `Server` dir.

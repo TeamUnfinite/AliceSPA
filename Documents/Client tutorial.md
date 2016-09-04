@@ -1,8 +1,4 @@
 #Create your app
-AliceSPA Client needs:
-
-* A Browser
-
 1. Move into `Client` dir.
 2. Run `bower install` to install the dependencies for AliceSPA.
 3. Copy and rename `app_empty_dist` to the same dir with your app name.
