@@ -4,7 +4,7 @@
 [Web Site](https://teamunfinite.github.io/AliceSPASite/)
 
 [Documents](https://github.com/TeamUnfinite/AliceSPA/wiki)
-#Free
+# Free
 AliceSPA is licensed under the MIT license.
-#Requirements
+# Developing Requirements
 [Click This](https://github.com/TeamUnfinite/AliceSPA/wiki/1.-Developing-requirements)
