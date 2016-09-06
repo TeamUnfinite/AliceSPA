@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `account`
+-- Table structure for table `aspa_account`
 --
 
-DROP TABLE IF EXISTS `account`;
+DROP TABLE IF EXISTS `aspa_account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `account` (
+CREATE TABLE `aspa_account` (
   `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(50) DEFAULT NULL,
   `password` varchar(64) NOT NULL,
@@ -34,17 +34,17 @@ CREATE TABLE `account` (
   `web_token_create_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `role`
+-- Table structure for table `aspa_role`
 --
 
-DROP TABLE IF EXISTS `role`;
+DROP TABLE IF EXISTS `aspa_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `role` (
+CREATE TABLE `aspa_role` (
   `user_id` bigint(11) NOT NULL,
   `role_names` json DEFAULT NULL,
   PRIMARY KEY (`user_id`)
@@ -52,13 +52,13 @@ CREATE TABLE `role` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `session`
+-- Table structure for table `aspa_session`
 --
 
-DROP TABLE IF EXISTS `session`;
+DROP TABLE IF EXISTS `aspa_session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `session` (
+CREATE TABLE `aspa_session` (
   `id` varchar(30) NOT NULL,
   `session` json DEFAULT NULL,
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -83,4 +83,4 @@ CREATE TABLE `session` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-03 10:41:29
+-- Dump completed on 2016-09-06 13:37:44

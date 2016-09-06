@@ -44,14 +44,14 @@ class Authentication
                 'password' => $password
             ]
         ];
-        $user = $db->get('account',['id'],$where);
+        $user = $db->get('aspa_account',['id'],$where);
         if(!$user){
             throw new APIException(1);
             return false;
         }
 
         $token = utils::generateToken($user['id']);
-        $db->update('account',['web_token' => $token,'web_token_create_time'=>utils::datetimePHP2Mysql(time())],['id'=>$user['id']]);
+        $db->update('aspa_account',['web_token' => $token,'web_token_create_time'=>utils::datetimePHP2Mysql(time())],['id'=>$user['id']]);
         $user = $this->authenticateByWebToken($user['id'],$token);
 
         return $user;
@@ -60,7 +60,7 @@ class Authentication
     public function logout($id){
         $userInfo = $this->getUserInfo();
         if($userInfo !== false){
-            $db->update('account',['web_token'=>null,'web_token_create_time'=>null],['id'=>$userInfo['id']]);
+            $db->update('aspa_account',['web_token'=>null,'web_token_create_time'=>null],['id'=>$userInfo['id']]);
         }
     }
 
@@ -70,7 +70,7 @@ class Authentication
         $fieldNames = configHelper::getCoreConfig()['authenticateFieldNames'];
         foreach($nameMap as $key => $value){ // !PERFORMANCE
             $where = utils::arrayMap($fieldNames,$value);
-            if($db->has('account',['OR' => $where])){
+            if($db->has('aspa_account',['OR' => $where])){
                 return true;
             }
         }
@@ -79,7 +79,7 @@ class Authentication
 
     public function registerByUnionField($nameMap,$password){
         $db = db::getInstance();
-        
+
         $nameMap = $this->filterUnionField($nameMap);
 
         if($this->isExistByUnionField($nameMap)){
@@ -88,7 +88,7 @@ class Authentication
         }
         $data = $nameMap;
         $data['password'] = $password;
-        $id = $db->insert('account',$data);
+        $id = $db->insert('aspa_account',$data);
         if(intval($id) < configHelper::getCoreConfig()['autoincrementBeginValue']){
             throw new APIException(2);
             return false;
@@ -107,13 +107,13 @@ class Authentication
                 }
                 return true;
             },ARRAY_FILTER_USE_BOTH);
-        return $nameMap;     
+        return $nameMap;
     }
 
     public function authenticateByWebToken($userId,$webToken){
         $db = db::getInstance();
 
-        $user = $db->get('account',
+        $user = $db->get('aspa_account',
             '*',
             ['AND' =>
                 ['id'=>$userId,
@@ -129,7 +129,7 @@ class Authentication
         if(empty($web_token_create_time)){
             return false;
         }
-        if(time() - utils::datetimeMysql2PHP($web_token_create_time) > 
+        if(time() - utils::datetimeMysql2PHP($web_token_create_time) >
             configHelper::getCoreConfig()['webTokenValidTime']){
             return false;
         }
@@ -149,7 +149,7 @@ class Authentication
         $roles = null;
         if($this->isLoggedIn()){
             $db = db::getInstance();
-            $roles = $db->select('role','role_names',['user_id'=>$this->userInfo['id']]);
+            $roles = $db->select('aspa_role','role_names',['user_id'=>$this->userInfo['id']]);
             if(!empty($roles)){
                 $roles = $roles[0];
                 $roles = json_decode($roles,true);

@@ -26,7 +26,7 @@ class Session{
         $session = null;
         if(!empty($sessionId)){
             $sessionValidTime = configHelper::getCoreConfig()['sessionValidTime'];
-            $sessions = $db->select('session',
+            $sessions = $db->select('aspa_session',
                 '*',
                 [
                     'AND' => [
@@ -44,7 +44,7 @@ class Session{
         if($session === null){
             $sessionId = utils::generateUniqueId();
             $session  = [];
-            $db->insert('session',['id' => $sessionId, 'session' => json_encode($session)]);
+            $db->insert('aspa_session',['id' => $sessionId, 'session' => json_encode($session)]);
         }
         $this->setSession($session);
         return $sessionId;
@@ -54,7 +54,7 @@ class Session{
         $db = db::getInstance();
         $session = $this->getSession();
         if($session !== false){
-            $db->update('session',['session'=>json_encode($session)],['id' => $sessionId]);
+            $db->update('aspa_session',['session'=>json_encode($session)],['id' => $sessionId]);
         }
     }
 
@@ -85,7 +85,7 @@ class Session{
 
     public function clearSessions(){
         $db = db::getInstance();
-        $db->delete('session',['create_time[<]'=>utils::datetimePHP2Mysql(time()-configHelper::getCoreConfig()['sessionValidTime'])]);
+        $db->delete('aspa_session',['create_time[<]'=>utils::datetimePHP2Mysql(time()-configHelper::getCoreConfig()['sessionValidTime'])]);
         return true;
     }
 };
